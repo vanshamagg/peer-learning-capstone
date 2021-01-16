@@ -2,17 +2,17 @@
   "name": "mern-boilerplate",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "engines": {
     "node": "12.16.1"
   },
   "scripts": {
-    "start-prod": "npm run build && node ./build/index.js",
+    "start-prod": "npm run build && node ./build/server.js",
     "build": "npm run clean && npm run build-babel",
     "clean": "rm -rf build && mkdir build",
     "build-babel": "babel -d ./build ./src -s",
-    "start-dev": "node --exec babel-node src/index.js",
-    "server": "nodemon --exec babel-node src/index.js",
+    "start-dev": "node --exec babel-node src/server.js",
+    "server": "nodemon --exec babel-node src/server.js",
     "client": "npm start --prefix ../client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
@@ -27,6 +27,7 @@
     "@babel/register": "^7.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "colors": "^1.4.0",
     "concurrently": "^5.1.0",
     "config": "^3.3.0",
     "connect-flash": "^0.1.1",
@@ -37,6 +38,7 @@
     "express-jwt": "^6.0.0",
     "express-list-endpoints": "^4.0.1",
     "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "passport": "^0.4.1",
     "passport-google-oauth2": "^0.2.0",
@@ -47,6 +49,7 @@
     "validator": "^13.5.2"
   },
   "devDependencies": {
+    "@types/sequelize": "^4.28.9",
     "nodemon": "^2.0.2"
   }
 }
