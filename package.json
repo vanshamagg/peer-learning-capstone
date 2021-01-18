@@ -2,7 +2,7 @@
   "name": "studygram",
   "version": "1.0.0",
   "description": "",
-  "main": "server/src/index.js",
+  "main": "server/src/server.js",
   "type": "module",
   "scripts": {
     "start": "npm run start-prod --prefix server",
