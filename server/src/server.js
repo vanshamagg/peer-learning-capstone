@@ -35,4 +35,4 @@ const httpsOptions = {
 //   .createServer(httpsOptions, app)
 //   .listen(PORT, (_) => console.log(`HTTPS server running at https://localhost:${PORT}`.inverse));
 
-const server = app.listen(PORT, _=> console.log(`Server Started at PORT ${server.address().port}`))
+const server = app.listen(PORT, '0.0.0.0')
