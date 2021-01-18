@@ -10,7 +10,7 @@
     "start-prod": "npm run build && node ./build/server.js",
     "build": "npm run clean && npm run build-babel",
     "clean": "rm -rf build && mkdir build",
-    "build-babel": "babel -d ./build ./src -s",
+    "build-babel": "npx babel -d ./build ./src -s",
     "start-dev": "node --exec babel-node src/server.js",
     "server": "nodemon --exec babel-node src/server.js",
     "client": "npm start --prefix ../client",
