@@ -7,7 +7,7 @@
     "node": "12.16.1"
   },
   "scripts": {
-    "start": "npm run build && node ./build/server.js",
+    "start-prod": "npm run build && node ./build/server.js",
     "build": "npm run clean && npm run build-babel",
     "clean": "rm -rf build && mkdir build",
     "build-babel": "babel -d ./build ./src -s",
