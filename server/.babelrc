@@ -7,6 +7,9 @@
           "node": "current"
         }
       }
+    ],
+    [
+      "minify"
     ]
   ],
   "plugins": ["@babel/plugin-proposal-optional-chaining"]

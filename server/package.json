@@ -1,13 +1,13 @@
 {
-  "name": "mern-boilerplate",
+  "name": "studygram",
   "version": "1.0.0",
-  "description": "",
+  "description": "a collaborative peer learning platform",
   "main": "server.js",
   "engines": {
     "node": "12.16.1"
   },
   "scripts": {
-    "start-prod": "npm run build && node ./build/server.js",
+    "start": "npm run build && node ./build/server.js",
     "build": "npm run clean && npm run build-babel",
     "clean": "rm -rf build && mkdir build",
     "build-babel": "babel -d ./build ./src -s",
@@ -16,7 +16,7 @@
     "client": "npm start --prefix ../client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "Nemanja Mitic (https://github.com/nemanjam)",
+  "author": "Vansham Aggarwal, Shiva Prasad, Priyam Khutela",
   "license": "ISC",
   "dependencies": {
     "@babel/cli": "^7.2.3",
@@ -50,6 +50,7 @@
   },
   "devDependencies": {
     "@types/sequelize": "^4.28.9",
+    "babel-preset-minify": "^0.5.1",
     "nodemon": "^2.0.2"
   }
 }
