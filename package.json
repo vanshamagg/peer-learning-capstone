@@ -5,7 +5,7 @@
   "main": "server/src/server.js",
   "type": "module",
   "scripts": {
-    "postinstall": "npm o --prefix ./server",
+    "postinstall": "npm i --prefix ./server",
     "start": "npm run start-prod --prefix server",
     "start-dev": "node --experimental-modules babel-node server/src/index.js"
   },
