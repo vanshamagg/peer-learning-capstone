@@ -5,9 +5,8 @@
   "main": "server/src/server.js",
   "type": "module",
   "scripts": {
-    "start": "npm run start-prod --prefix server",
+    "start": "npm i --prefix ./server && npm run start-prod --prefix server",
     "start-dev": "node --experimental-modules babel-node server/src/index.js"
-    
   },
   "author": "Vansham Aggarwal, Sagar Mounika, Basil Maben, Prince Khutela, Shiva Prasad",
   "license": "MIT",
