@@ -39,6 +39,7 @@
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
     "express-list-endpoints": "^4.0.1",
+    "express-validator": "^6.9.2",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
@@ -48,8 +49,7 @@
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.5",
-    "uuid": "^8.3.2",
-    "validator": "^13.5.2"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/sequelize": "^4.28.9",

@@ -1,5 +1,5 @@
 /**
- *      controllers for /api/resources
+ *      controllers for /api/resource
  *
  */
 import { User, Resource } from '../models';
@@ -26,20 +26,28 @@ async function create(req, res) {
     const FILE_PATH = req.file.path;
 
     cloudinary.v2.uploader.upload(FILE_PATH, async (err, resource) => {
-      if (err) throw err;
-      const reso = await user.createResource({
-        url: resource.url,
-        type: resource.format,
-        size: req.file.size,
-        description: req.body.description,
-        publicid: resource.public_id,
-      });
+      try {
+        if (err) throw err;
+        const reso = await user.createResource({
+          url: resource.url,
+          type: resource.format,
+          size: req.file.size,
+          description: req.body.description,
+          publicid: resource.public_id,
+        });
 
-      rmSync(FILE_PATH);
-      res.json(reso.toJSON());
+        res.json(reso.toJSON());
+      } catch (error) {
+        res.status(500).json({ message: 'Something happened while uploading the file to cloud', error });
+      } finally {
+        // remove the file from the server
+        rmSync(FILE_PATH);
+      }
+
+      //remove file from server
     });
   } catch (error) {
-    res.json({ error });
+    res.status(400).json({ error: error.message || error.errors[0].message || error  });
   }
 }
 
@@ -61,20 +69,33 @@ async function getAllUser(req, res) {
       },
     });
 
+    if (!user)
+      throw new Error(
+        'User not found. This has happened because, the token has some credentials which are not in the database.',
+      );
     res.json(user.toJSON());
   } catch (error) {
-    console.log(error.message);
-    res.json({ error });
+    res.status(400).json({ error: error.message || error.errors[0].message });
   }
 }
 
 // get every single resource in db
 async function getEverything(req, res) {
   try {
-    const list = await Resource.findAll({});
+    const list = await Resource.findAll({
+      attributes: {
+        exclude: ['publicid', 'updatedAt', 'type', 'userId'],
+      },
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ],
+    });
     res.send(list);
   } catch (error) {
-    res.send({ error });
+    res.status(400).json({ error: error.message || error.errors[0].message });
   }
 }
 
@@ -99,8 +120,7 @@ async function deleteResource(req, res) {
       }
     });
   } catch (error) {
-    res.status(400);
-    res.json({ error: error.message });
+    res.status(400).json({ error: error.message || error.errors[0].message });
   }
 }
 const controllers = {};

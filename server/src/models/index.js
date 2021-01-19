@@ -25,9 +25,8 @@ const sequelize = new Sequelize(process.env.HEROKU_DB_URI, {
     await sequelize.authenticate();
     console.log('Connection to the Db Established'.bold.white);
 
-  await sequelize.sync({    });
+  await sequelize.sync({ /* force: true */});
     console.log('All models synchronized'.bold.white);
-
   } catch (err) {
     console.log(`ERROR : ${err.message}`.bold.red);
   }
@@ -39,12 +38,11 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 const User = UserModel(sequelize, Sequelize);
-const Resource = ResourceModel(sequelize, Sequelize)
+const Resource = ResourceModel(sequelize, Sequelize);
 
 // relationships
-User.hasMany(Resource)
-Resource.belongsTo(User)
-
+User.hasMany(Resource, { onDelete: 'cascade' });
+Resource.belongsTo(User);
 
 export default db;
-export {User, Resource}
+export { User, Resource };

@@ -26,4 +26,5 @@ app.get('/', (req, res) => {
 
 // listing all the endpoints in the app
 console.log(listendpoints(app));
+
 const server = app.listen(PORT, _ =>  console.log(`Server started at port ${server.address().port}`.inverse))

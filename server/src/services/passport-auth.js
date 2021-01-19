@@ -6,6 +6,7 @@ import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import { User } from '../models';
 import { Op } from 'sequelize';
+import bcrypt from 'bcryptjs';
 import 'colors';
 
 passport.use(
@@ -28,8 +29,8 @@ passport.use(
       if (!user) throw new Error('User not found');
 
       user = user.toJSON();
-       
-      if (user.password === password) {
+      const checkPassword = await bcrypt.compare(password, user.password) 
+      if (checkPassword) {
         console.log(`${username} Authenticated.`.white.bold);
         delete user.password;
         done(null, user);
