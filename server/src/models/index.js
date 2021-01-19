@@ -2,6 +2,7 @@ import 'dotenv/config';
 import { Sequelize } from 'sequelize';
 import 'colors';
 import UserModel from './User.model';
+import ResourceModel from './Resource.model';
 
 // const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
 //   dialect: process.env.DB_DIALECT,
@@ -24,7 +25,7 @@ const sequelize = new Sequelize(process.env.HEROKU_DB_URI, {
     await sequelize.authenticate();
     console.log('Connection to the Db Established'.bold.white);
 
-    await sequelize.sync({ /* alter: true */ });
+  await sequelize.sync({    });
     console.log('All models synchronized'.bold.white);
 
   } catch (err) {
@@ -37,6 +38,13 @@ const db = {};
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+const User = UserModel(sequelize, Sequelize);
+const Resource = ResourceModel(sequelize, Sequelize)
+
+// relationships
+User.hasMany(Resource)
+Resource.belongsTo(User)
+
 
 export default db;
-export const User = UserModel(sequelize, Sequelize);
+export {User, Resource}

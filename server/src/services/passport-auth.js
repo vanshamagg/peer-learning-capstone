@@ -9,7 +9,9 @@ import { Op } from 'sequelize';
 import 'colors';
 
 passport.use(
-  new LocalStrategy(async (username, password, done) => {
+  new LocalStrategy({
+    passReqToCallback: true
+  },async (req, username, password, done) => {
     try {
       let user = await User.findOne({
         where: {

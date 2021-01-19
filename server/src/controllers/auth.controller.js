@@ -8,7 +8,7 @@ import 'dotenv/config';
 async function giveToken(req, res) {
   try {
     const user = { username: req.user.username, email: req.user.email };
-    const encoded = jwt.sign(user, process.env.JWT_SECRET_DEV, { expiresIn: '1hr' });
+    const encoded = jwt.sign(user, process.env.JWT_SECRET_DEV, { expiresIn:"1hr" });
     req.user.token = encoded;
 
     res.json(req.user);

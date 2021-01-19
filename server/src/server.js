@@ -5,9 +5,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import api from './routes/api';
 import 'colors';
-import https from 'https';
-import { readFileSync } from 'fs';
-import { resolve } from 'path';
+import listendpoints from 'express-list-endpoints';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,14 +23,7 @@ app.get('/', (req, res) => {
   res.send(message);
 });
 
-const httpsOptions = {
-  key: readFileSync(resolve(__dirname, '..', 'security', 'key.pem')),
-  cert: readFileSync(resolve(__dirname, '..', 'security', 'cert.pem')),
-  passphrase: 'vansham',
-};
 
-// const server = https
-//   .createServer(httpsOptions, app)
-//   .listen(PORT, (_) => console.log(`HTTPS server running at https://localhost:${PORT}`.inverse));
-
-const server = app.listen(PORT, '0.0.0.0')
+// listing all the endpoints in the app
+console.log(listendpoints(app));
+const server = app.listen(PORT, _ =>  console.log(`Server started at port ${server.address().port}`.inverse))

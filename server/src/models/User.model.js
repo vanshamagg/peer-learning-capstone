@@ -1,5 +1,3 @@
-import sequelize from 'sequelize';
-import { Sequelize } from 'sequelize';
 
 export default (sequelize, Sequelize) => {
   const DataTypes = Sequelize.DataTypes;

@@ -5,6 +5,7 @@
 import { Router } from 'express';
 import controllers  from '../../controllers/user.controllers';
 import authRouter from './auth.router';
+import jwt from '../../services/jwt';
 
 const router = Router();
 
@@ -16,13 +17,7 @@ router.use('/auth', authRouter);
 
 // endpoints
 
-router.get('/', (req, res) => {
-  res.send('welcome to the user router');
-});
-
-
-
 router.post('/', controllers.create);
-router.get('/:username', controllers.get);
-router.put('/', controllers.update);
+router.get('/', jwt, controllers.get);
+router.put('/', jwt, controllers.update);
 export default router;

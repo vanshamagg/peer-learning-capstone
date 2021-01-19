@@ -28,6 +28,7 @@
     "babel-preset-minify": "^0.5.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "cloudinary": "^1.23.0",
     "colors": "^1.4.0",
     "concurrently": "^5.1.0",
     "config": "^3.3.0",
@@ -47,6 +48,7 @@
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.5",
+    "uuid": "^8.3.2",
     "validator": "^13.5.2"
   },
   "devDependencies": {

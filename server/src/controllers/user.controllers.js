@@ -3,6 +3,7 @@
  */
 
 import { User } from '../models';
+import { Op } from 'sequelize';
 
 // CREATE A USER
 async function create(req, res) {
@@ -17,10 +18,10 @@ async function create(req, res) {
   }
 }
 
-// GET USER DETAILS USING 'username'
+// GET USER DETAILS USING JWT
 async function get(req, res) {
   try {
-    const username = req.params.username;
+    const username = req.user.username;
     const user = await User.findOne({ where: { username } });
     if (!user) throw new Error('No User Exists by that username');
     res.json(user.toJSON());
@@ -32,10 +33,10 @@ async function get(req, res) {
 // UPDATE DETAILS EXCEPT username and password,
 async function update(req, res) {
   try {
-    const { firstname, lastname, username, email } = req.body;
+    const { firstname, lastname,  email } = req.body;
     if (!req.body) throw new Error('Request body is empty');
 
-    const user = await User.findOne({ where: { username } });
+    const user = await User.findOne({ where: { username: req.user.username } });
     if (!user) throw new Error(`User with username ${username} not found.`);
 
     await User.update(
@@ -46,14 +47,14 @@ async function update(req, res) {
       },
       {
         where: {
-          username,
+          username: req.user.username
         },
       },
     );
 
-    res.send('User Updated. Except Username and Password');
+    res.send({message: "user updated except username and password"})
   } catch (error) {
-    res.status(400).send(error.message);
+    res.status(400).json({ error: error.message });
   }
 }
 
