@@ -3,8 +3,9 @@
  */
 
 import 'dotenv/config';
-import { User } from '../models';
+import { User, Resource, Like } from '../models';
 import bcrypt from 'bcryptjs';
+import { Op } from 'sequelize';
 
 // CREATE A USER
 async function create(req, res) {
@@ -15,7 +16,7 @@ async function create(req, res) {
     password = await bcrypt.hash(password, salt);
 
     await User.create({ firstname, lastname, username, email, password });
-    res.status(200).send('User has been created successfully');
+    res.status(200).json({ messge: 'User has been created successfully' });
   } catch (error) {
     console.log(error);
     res.status(400).json({
@@ -37,7 +38,7 @@ async function get(req, res) {
     if (!user) throw new Error('No User Exists by that username');
     res.json(user.toJSON());
   } catch (error) {
-    res.status(400).json({ error: error.message || error.errors[0].message || error});
+    res.status(400).json({ error: error.message || error.errors[0].message || error });
   }
 }
 
@@ -68,9 +69,35 @@ async function update(req, res) {
   }
 }
 
+// GET ONLY USER's RESOURCES
+async function getResources(req, res) {
+  try {
+    const list = await Resource.findAll({
+      where: {
+        userId: req.user.id
+      },
+      include: [
+        {
+          model: Like,
+          attributes: ['userId'],
+          include: [
+            {
+              model: User,
+              attributes: ['firstname', 'lastname'],
+            },
+          ],
+        },
+      ],
+    });
+
+    res.send(list);
+  } catch (error) {
+    res.status(400).json({ error: error.message || error.errors[0].message });
+  }
+}
 const controllers = {};
 controllers.create = create;
 controllers.get = get;
 controllers.update = update;
-
+controllers.getResources = getResources;
 export default controllers;

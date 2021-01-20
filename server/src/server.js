@@ -10,21 +10,41 @@ import listendpoints from 'express-list-endpoints';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// middleware
+
+/**
+ * ======================================
+ *              MIDDLEWARE
+ * ====================================== 
+ */
 app.use(morgan('dev'));
 app.use(cors());
 
-// routers
+
+/**
+ * ======================================
+ *              /api ROUTER
+ * ====================================== 
+ */
 app.use('/api', api);
 
-// welcome
+
+/**
+ * ======================================
+ *              Home page/Welcome
+ * ====================================== 
+ */
 app.get('/', (req, res) => {
   const message = `<h1 align = 'center'> Houston, we have take-off </h1>`;
   res.send(message);
 });
 
 
-// listing all the endpoints in the app
+
+/**
+ * ======================================
+ *           A list of endpoints
+ * ====================================== 
+ */
 console.log(listendpoints(app));
 
 const server = app.listen(PORT, _ =>  console.log(`Server started at port ${server.address().port}`.inverse))

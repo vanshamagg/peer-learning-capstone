@@ -3,6 +3,7 @@ import { Sequelize } from 'sequelize';
 import 'colors';
 import UserModel from './User.model';
 import ResourceModel from './Resource.model';
+import LikeModel from './Like.model'
 
 // const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
 //   dialect: process.env.DB_DIALECT,
@@ -25,7 +26,7 @@ const sequelize = new Sequelize(process.env.HEROKU_DB_URI, {
     await sequelize.authenticate();
     console.log('Connection to the Db Established'.bold.white);
 
-  await sequelize.sync({ /* force: true */});
+  await sequelize.sync({  /*force: true */ });
     console.log('All models synchronized'.bold.white);
   } catch (err) {
     console.log(`ERROR : ${err.message}`.bold.red);
@@ -39,10 +40,18 @@ db.Sequelize = Sequelize;
 
 const User = UserModel(sequelize, Sequelize);
 const Resource = ResourceModel(sequelize, Sequelize);
+const Like = LikeModel(sequelize, Sequelize);
 
 // relationships
 User.hasMany(Resource, { onDelete: 'cascade' });
 Resource.belongsTo(User);
 
+Resource.hasMany(Like, {onDelete: 'cascade' })
+Like.belongsTo(Resource)
+
+User.hasMany(Like, {onDelete: 'cascade'})
+Like.belongsTo(User)
+
+
 export default db;
-export { User, Resource };
+export { sequelize, Sequelize, User, Resource, Like };
