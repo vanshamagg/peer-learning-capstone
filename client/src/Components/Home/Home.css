@@ -19,6 +19,9 @@
   padding: 0.5rem;
   font-size: 3rem;
 }
+.home_card a {
+  text-decoration: none !important;
+}
 .home_card button {
   border-color: #376e6f;
 

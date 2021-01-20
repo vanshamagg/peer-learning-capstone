@@ -1,7 +1,12 @@
 import React from 'react';
-
-function Wrapper(props) {
-  return <div className="wrapper">{props.children}</div>;
+import Navigation from './Navigation/Navigation.js';
+import Body from './Body/Body.js';
+function Wrapper() {
+  return (
+    <div className="wrapper">
+      <Body />
+    </div>
+  );
 }
 
 export default Wrapper;

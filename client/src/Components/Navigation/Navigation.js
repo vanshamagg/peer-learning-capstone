@@ -1,15 +1,20 @@
 import React from 'react';
 import './Navigation.css';
-import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import { LinkContainer } from "react-router-bootstrap";
+
+import { Navbar, Nav, Form, FormControl } from 'react-bootstrap';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 function Navigation() {
   return (
     <Navbar className="navigation">
-      <Navbar.Brand href="#home">
-        {' '}
+       <LinkContainer to="/">
+       <Navbar.Brand >
+       
         <h1>StudyGram</h1>
       </Navbar.Brand>
+       </LinkContainer>
+     
       <Nav className="ml-auto">
         <Form inline>
           <FormControl

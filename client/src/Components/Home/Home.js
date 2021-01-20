@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css';
 import { Card, Button } from 'react-bootstrap';
-function Home({ login }) {
+function Home() {
   return (
     <div className="home">
       <Card className="home_card">
@@ -12,12 +13,16 @@ function Home({ login }) {
           <Card.Text>
             <p>Learn,Share,Discuss..</p>
           </Card.Text>
-          <Button variant="link" block onClick={login}>
-            Login
-          </Button>
-          <Button variant="link" block>
-            Sign Up
-          </Button>
+          <Link to="/login">
+            <Button variant="link" block >
+              Login
+            </Button>
+          </Link>
+          <Link to="/signup" >
+            <Button variant="link" block>
+              Sign Up
+            </Button>
+          </Link>
         </Card.Body>
       </Card>
     </div>
