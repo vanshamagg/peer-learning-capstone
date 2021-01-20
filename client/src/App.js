@@ -8,21 +8,11 @@ import Login from './Components/Login/Login.js';
 import SignUp from './Components/SignUp/SignUp.js';
 
 const App = () => {
-  const [user, setUser] = useState(null);
-  const login = async (e) => {
-    e.preventDefault();
-    setUser(true);
-  };
-
   return (
     <Router>
       <Route exact path="/" component={Home} />
       <Navigation />
-      <Route
-        exact
-        path="/login"
-        render={(props) => <Login {...props} login={login} user={user} />}
-      />
+      <Route exact path="/login" render={(props) => <Login {...props} />} />
       <Route exact path="/signup" component={SignUp} />
 
       <Route exact path="/wrapper" component={Wrapper} />
