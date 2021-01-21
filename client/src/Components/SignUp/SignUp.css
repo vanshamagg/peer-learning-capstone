@@ -1,8 +1,8 @@
 .signUp {
   width: 50%;
- height: 85vh!important;
- overflow: hidden;
-  margin: 10px auto;
+  /* height: 65vh !important; */
+  overflow: hidden;
+  margin: 40px auto;
   border: 1px solid #376e37;
   padding: 1.5em;
   background-color: #376e6f;
@@ -11,8 +11,10 @@
   text-align: center;
 }
 .signUp input {
-    margin: 1rem;  
-  }
+  margin: 1rem auto;
+  width:60%;
+
+}
 .signUp button {
   border-color: #da7b93;
   width: 90px;
@@ -31,17 +33,16 @@
   box-shadow: none;
 }
 .signUp input:focus {
-    outline: none !important;
-    box-shadow: none !important;
-    border: none !important;
-  }
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
 @media only screen and (max-width: 600px) {
-   
-    .signUp {
-      width: 90% !important;
-      padding:1em;
-    }
-    .signUp input{
-        width: 100% !important;
-    }
+  .signUp {
+    width: 90% !important;
+    padding: 1em;
   }
+  .signUp input {
+    width: 100% !important;
+  }
+}

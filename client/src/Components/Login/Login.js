@@ -34,7 +34,6 @@ function Login() {
       })
       .catch((error) => console.log(error));
   };
-  const token = localStorage.getItem('token');
 
   if (isLoggedIn) {
     return <Redirect to="/Wrapper" />;
