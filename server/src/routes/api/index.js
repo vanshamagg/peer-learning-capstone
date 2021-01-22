@@ -5,6 +5,7 @@
 import { Router } from 'express';
 import user from './user.router';
 import resource from './resource.route';
+import group from './group.route'
 import bodyParser from 'body-parser';
 
 const router = Router();
@@ -25,7 +26,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
  */
 router.use('/user', user);
 router.use('/resource', resource);
-
+router.use('/group', group);
 
 /**
  * ======================================

@@ -50,8 +50,6 @@ async function create(req, res) {
         // remove the file from the server
         rmSync(FILE_PATH);
       }
-
-      //remove file from server
     });
   } catch (error) {
     res.status(400).json({ error: error.message || error.errors[0].message || error });
@@ -131,8 +129,8 @@ async function deleteResource(req, res) {
     if (!resource) throw new Error('No resource exists by that primary key');
 
     // check is the uploaded deleting the resource or what
-    if(resource.userId !== req.user.id)
-      throw new Error("You are not authorized to delete this resource. Only the owner can");
+    if (resource.userId !== req.user.id)
+      throw new Error('You are not authorized to delete this resource. Only the owner can');
 
     // the cloud id of the resource
     const publicid = resource.publicid;
