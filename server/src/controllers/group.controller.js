@@ -4,7 +4,6 @@
  */
 import { Groups, User, Sequelize } from '../models';
 import { createOrGetModel, deleteModel } from '../models/dynamic-message-tables.model';
-import { Op } from 'sequelize';
 /**
  *  Creates a group
  */
@@ -128,6 +127,7 @@ async function get(req, res) {
 
 /**
  *  Add one member to a group
+ *  if the admin wants to add someone to the grouop
  */
 async function addMember(req, res) {
   try {
@@ -142,18 +142,17 @@ async function addMember(req, res) {
     // check if the logged in user is the admin
     const isAdmin = await group.hasAdmin(req.user.id);
 
-    if (!isAdmin) throw new Error('You are not authorised to add a memeber as you are not the admin of this group');
+    if (!isAdmin) throw new Error('You are not authorised to add a member as you are not the admin of this group');
 
     // check if the member being try to add exists in the database
     const user = await User.findOne({
       where: { id },
     });
 
-    if (!user) throw new Error('The user that you are trying to add doesn not exist in the database');
+    if (!user) throw new Error('The user that you are trying to add does not exist in the database');
 
     // check if the user being added is already the member of this group
     const isMember = await group.hasMember(user);
-
     if (isMember) throw new Error('This user is already the member of this group');
 
     // add the member now to this group
@@ -166,10 +165,133 @@ async function addMember(req, res) {
     res.status(400).json({ error: error.message || error.errors[0].message || error });
   }
 }
+
+/**
+ * Delete one member from the group
+ * If the admin wants to remove a member from the group
+ */
+async function deleteMember(req, res) {
+  try {
+    const gid = req.params.id;
+    const uid = req.body.id;
+
+    // get the group
+    const group = await Groups.findByPk(gid);
+    if (!group) throw new Error('Invalid Group ID');
+
+    // check if the logged in user is the admin or not
+    const isAdmin = await group.hasAdmin(req.user.id);
+    if (!isAdmin) throw new Error('You are not authorised to add a member as you are not the admin of this group');
+
+    // check if the user being remove is valid or not
+    const user = await User.findByPk(uid);
+    if (!user) throw new Error('The user that you are trying to remove does not exist in the datbase');
+
+    // check if ther user being removed is the admin of the group
+    // if he is the admin then for simplicity, he cannot be removed
+    const isUserAdmin = await user.hasAdminGroup(group);
+    if (isUserAdmin) throw new Error('This user is the admin of the group hence cannot be removed from here');
+
+    // check if the user being removed from the group is a member or not
+    const isMember = await group.hasMember(user);
+    if (!isMember) throw new Error('This user is not the member of this group');
+
+    // remove member from this group
+    await group.removeMember(uid);
+    group.totalmembers -= 1;
+    await group.save();
+
+    res.json({ message: `Removed user ${user.username} with id ${user.id} to the group ${group.name}` });
+  } catch (error) {
+    res.status(400).json({ error: error.message || error.errors[0].message || error });
+  }
+}
+
+/**
+ * Join a discussion group
+ * any logged in member can join a group
+ */
+async function join(req, res) {
+  try {
+    const gid = req.params.id;
+    const uid = req.user.id;
+
+    //  get the user
+    const user = await User.findByPk(uid);
+
+    // get the group
+    const group = await Groups.findByPk(gid);
+    if (!group) throw error('Invalid Group ID');
+
+    // whether the user is member of this group or not
+    const isMember = await group.hasMember(user);
+
+    if (isMember)
+      throw new Error(
+        `User ${user.firstname} ${user.lastname} with id ${user.id} is already the member of group ${group.name}`,
+      );
+
+    // add the current logged in user as the member of this group
+    await group.addMember(user);
+    group.totalmembers += 1;
+    await group.save();
+
+    res.json({ message: `user ${user.firstname} ${user.lastname} (You) has been added to the ${group.name} ` });
+  } catch (error) {
+    res.status(400).json({ error: error.message || error.errors[0].message || error });
+  }
+}
+
+/**
+ *  Leave a discussion group
+ *  A logged in member can leave a discussion group
+ */
+async function leave(req, res) {
+  try {
+    const gid = req.params.id;
+    const uid = req.user.id;
+
+    //  get the user
+    const user = await User.findByPk(uid);
+
+    // get the group
+    const group = await Groups.findByPk(gid);
+    if (!group) throw error('Invalid Group ID');
+
+    // whether the user is member of this group or not
+    const isMember = await group.hasMember(user);
+
+    if (!isMember)
+      throw new Error(`This User ${user.firstname} ${user.lastname} (you) is not the member of group ${group.name}`);
+
+    // check if the logged in user is the admin of the group
+    const isAdmin = await group.hasAdmin(user);
+    if (isAdmin)
+      throw new Error(
+        `User ${user.firstname} ${user.lastname} (You) is the admin of this group and hence cannot be removed from here`,
+      );
+
+    // remove the logged in user from the group
+    await group.removeMember(user);
+    group.totalmembers -= 1;
+    await group.save();
+
+    const successMesasge = `user ${user.firstname} ${user.lastname} has been removed from ther group ${group.name}`;
+
+    res.json({ message: successMesasge });
+  } catch (error) {
+    res.status(400).json({ error: error.message || error.errors[0].message || error });
+  }
+}
+
 const controllers = {};
 controllers.create = create;
 controllers.addMember = addMember;
+controllers.join = join;
 controllers.deleteGroup = deleteGroup;
+controllers.deleteMember = deleteMember;
+controllers.leave = leave;
 controllers.getMembers = getMembers;
 controllers.get = get;
+
 export default controllers;

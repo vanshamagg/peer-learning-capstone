@@ -28,7 +28,7 @@ const sequelize = new Sequelize(process.env.HEROKU_DB_URI, {
     console.log('Connection to the Db Established'.bold.white);
 
     await sequelize.sync({
-      /*force: true */
+      /* force: true */
     });
     console.log('All models synchronized'.bold.white);
   } catch (err) {

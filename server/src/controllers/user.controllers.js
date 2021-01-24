@@ -10,17 +10,45 @@ import { Op } from 'sequelize';
 // CREATE A USER
 async function create(req, res) {
   try {
-    let { firstname, lastname, username, email, password } = req.body;
+    let {
+      firstname,
+      lastname,
+      username,
+      email,
+      password,
+      insti_name,
+      insti_type,
+      gender,
+      mobile,
+      city,
+      state,
+      country,
+      dob,
+    } = req.body;
 
     const salt = await bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS));
     password = await bcrypt.hash(password, salt);
 
-    await User.create({ firstname, lastname, username, email, password });
+    await User.create({
+      firstname,
+      lastname,
+      username,
+      email,
+      password,
+      insti_name,
+      insti_type,
+      gender,
+      mobile,
+      city,
+      state,
+      country,
+      dob,
+    });
     res.status(200).json({ messge: 'User has been created successfully' });
   } catch (error) {
-    console.log(error);
+    console.log(error.parent.message);
     res.status(400).json({
-      error: error.message || error.errors[0].message || error,
+      error: error,
     });
   }
 }
@@ -74,7 +102,7 @@ async function getResources(req, res) {
   try {
     const list = await Resource.findAll({
       where: {
-        userId: req.user.id
+        userId: req.user.id,
       },
       include: [
         {

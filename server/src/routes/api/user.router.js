@@ -1,9 +1,9 @@
 /**
  *      /api/user
- *      
+ *
  *      This route deals with the creation and updation of normal users.
- *      Its has a sub-route called 'auth' which will issue JWT to the user  
- *      
+ *      Its has a sub-route called 'auth' which will issue JWT to the user
+ *
  */
 
 import { Router } from 'express';
@@ -11,31 +11,28 @@ import controllers from '../../controllers/user.controllers';
 import authRouter from './auth.router';
 import jwt from '../../services/jwt';
 import { validateSignup, validateUserUpdate, isRequestValidated } from '../../services/validator';
-
+import {  ValidateUserSignUp } from '../../services/validations/user.validations';
 const router = Router();
-
 
 /**
  * ======================================
  *         MOUNTING api/user/auth
- * ====================================== 
+ * ======================================
  */
 router.use('/auth', authRouter);
-
-
 
 /**
  * ======================================
  *              ENDPOINTS
- * ====================================== 
- * 
+ * ======================================
+ *
  *  POST /api/user      creates a new user      attributes required- [ 'firstname', 'lastname', 'username', 'email', 'password' ]
  *  GET  /api/user      gets the user details for the JWT in the 'Authorization' Header
- *  PUT  /api/user      update user details     attributes that cannot be updated- ['username', 'email', 'password' ]   
+ *  PUT  /api/user      update user details     attributes that cannot be updated- ['username', 'email', 'password' ]
  *  GET  /api/user/resources    get all the resources uploaded by the user
  */
-router.post('/', validateSignup, isRequestValidated, controllers.create);
+router.post('/', ValidateUserSignUp, controllers.create);
 router.get('/', jwt, controllers.get);
 router.put('/', jwt, validateUserUpdate, isRequestValidated, controllers.update);
-router.get('/resource', jwt, controllers.getResources)
+router.get('/resource', jwt, controllers.getResources);
 export default router;

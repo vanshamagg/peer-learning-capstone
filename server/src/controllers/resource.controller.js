@@ -12,18 +12,8 @@ import Sequelize from 'sequelize';
 // create a resource
 async function create(req, res) {
   try {
-    console.log(req.body);
     const user = await User.findOne({
-      where: {
-        [Op.or]: [
-          {
-            username: req.user.username,
-          },
-          {
-            email: req.user.email,
-          },
-        ],
-      },
+      where: { id: req.user.id },
     });
 
     const FILE_PATH = req.file.path;
@@ -61,7 +51,7 @@ async function getEverything(req, res) {
   try {
     const list = await Resource.findAll({
       attributes: {
-        exclude: ['publicid', 'updatedAt', 'type', 'userId'],
+        exclude: ['publicid', 'updatedAt', 'userId'],
       },
       include: [
         {
