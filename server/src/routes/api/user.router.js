@@ -33,6 +33,7 @@ router.use('/auth', authRouter);
  */
 router.post('/', ValidateUserSignUp, controllers.create);
 router.get('/', jwt, controllers.get);
+router.get('/:query', jwt, controllers.getUser)
 router.put('/', jwt, validateUserUpdate, isRequestValidated, controllers.update);
 router.get('/resource', jwt, controllers.getResources);
 export default router;

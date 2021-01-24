@@ -6,6 +6,7 @@ import 'dotenv/config';
 import { User, Resource, Like } from '../models';
 import bcrypt from 'bcryptjs';
 import { Op } from 'sequelize';
+import { parse } from 'dotenv';
 
 // CREATE A USER
 async function create(req, res) {
@@ -123,9 +124,49 @@ async function getResources(req, res) {
     res.status(400).json({ error: error.message || error.errors[0].message });
   }
 }
+
+/**
+ * get details of a partiuclar user basis of query
+ */
+
+async function getUser(req, res) {
+  try {
+    const query = req.params.query;
+
+    const toNumber = parseInt(query);
+    let user;
+    // query is a string (username)
+    if (isNaN(toNumber)) {
+      user = await User.findOne({
+        where: {
+          username: query,
+        },
+        attributes: {
+          exclude: ['password'],
+        },
+      });
+    } else {
+      // query is a number
+      user = await User.findByPk(query, {
+        attributes: {
+          exclude: ['password'],
+        },
+      });
+    }
+
+    if (!user) throw new Error('User not found!');
+    res.json(user);
+
+    // res.json(user);
+  } catch (error) {
+    res.status(400).json({ error: error.message || error.errors[0].message });
+  }
+}
+
 const controllers = {};
 controllers.create = create;
 controllers.get = get;
+controllers.getUser = getUser;
 controllers.update = update;
 controllers.getResources = getResources;
 export default controllers;
