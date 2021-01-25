@@ -6,7 +6,6 @@ import cors from 'cors';
 import api from './routes/api';
 import 'colors';
 import listendpoints from 'express-list-endpoints';
-import { createOrGetModel, deleteModel } from './services/dynamic-models';
 
 const app = express();
 const PORT = process.env.PORT || 3000;

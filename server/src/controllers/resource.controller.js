@@ -3,51 +3,39 @@
  *
  */
 import { User, Resource, Like } from '../models';
-import { Op } from 'sequelize';
-import cloudinary from '../services/cloudinary';
-import { rmSync, rm } from 'fs';
-// import { rm } from 'fs/promises';
-import { sequelize } from '../models';
-import Sequelize from 'sequelize';
+import drive from '../services/google-drive';
+import { rm } from 'fs/promises';
+import googleDrive from '../services/google-drive';
 
 // create a resource
 async function create(req, res) {
+  const FILE_PATH = req.file.path;
   try {
+    // find the user
     const user = await User.findOne({
       where: { id: req.user.id },
     });
 
-    const FILE_PATH = req.file.path;
+    const { title, description } = req.body;
 
-    cloudinary.v2.uploader.upload(FILE_PATH, async (err, resource) => {
-      try {
-        if (err) throw err;
-        const reso = await user.createResource({
-          url: resource.url,
-          type: resource.format,
-          size: req.file.size,
-          description: req.body.description,
-          publicid: resource.public_id,
-          title: req.body.title,
-        });
+    // uploading the file in the drive in getting the details
+    const file = await drive.uploadFile(req.file.originalname, description, FILE_PATH);
 
-        res.json(reso.toJSON());
-      } catch (error) {
-        console.log(error);
-        // delete file from the server if a database error occurs
-        // cloudinary.v2.uploader.destroy(resource.public_id)
-        res.status(500).json({ message: 'Something happened while uploading the file to cloud', error });
-      } finally {
-        // remove the file from the server
-        rm(FILE_PATH, (err) => {
-          if (err) throw err;
-          console.log(`${FILE_PATH} uploaded successfully.`);
-        });
-        // await rm(FILE_PATH);
-      }
+    // inserting resource in the database
+    let resource = await user.createResource({
+      title,
+      type: req.file.type,
+      publicid: file.id,
     });
+
+    resource = resource.toJSON();
+    resource['file'] = file;
+    res.json(resource);
   } catch (error) {
-    res.status(400).json({ error: error.message || error.errors[0].message || error });
+    res.status(400).json({ error: error.message || error });
+  } finally {
+    // delete the temp file from the server
+    await rm(FILE_PATH);
   }
 }
 
@@ -56,7 +44,7 @@ async function getEverything(req, res) {
   try {
     const list = await Resource.findAll({
       attributes: {
-        exclude: ['publicid', 'updatedAt', 'userId'],
+        exclude: ['updatedAt', 'userId'],
       },
       include: [
         {
@@ -65,7 +53,7 @@ async function getEverything(req, res) {
         },
         {
           model: Like,
-          attributes: ['userId'],
+          attributes: [],
           include: [
             {
               model: User,
@@ -75,9 +63,15 @@ async function getEverything(req, res) {
         },
       ],
     });
+
+    // attaching file details to every file
+    for (let i = 0; i < list.length; i++) {
+      list[i] = list[i].toJSON();
+      list[i]['file'] = await googleDrive.getDetails(list[i].publicid);
+    }
     res.send(list);
   } catch (error) {
-    res.status(400).json({ error: error.message || error.errors[0].message });
+    res.status(400).json({ error: error.message || error });
   }
 }
 
@@ -85,7 +79,7 @@ async function getEverything(req, res) {
 async function getSingle(req, res) {
   try {
     const pk = req.params.pk;
-    const reso = await Resource.findByPk(pk, {
+    let reso = await Resource.findByPk(pk, {
       include: [
         {
           model: User,
@@ -109,6 +103,11 @@ async function getSingle(req, res) {
 
     // count the number of likes and attach it to the outgoing object
     reso.dataValues.likeCount = await reso.countLikes();
+
+    // fetching and attaching cloud file details
+    reso = reso.toJSON()
+    reso['file'] = await googleDrive.getDetails(reso.publicid);
+    
     res.send(reso);
   } catch (error) {
     res.status(400).json({ error: error.message || error.errors[0].message });
@@ -131,17 +130,14 @@ async function deleteResource(req, res) {
     const publicid = resource.publicid;
 
     // deleting the file from cloud
-    cloudinary.v2.uploader.destroy(publicid, async (err, asset) => {
-      try {
-        if (err) throw err;
-        await Resource.destroy({ where: { id: pk } });
-        res.json({ message: 'Destroyed' });
-      } catch (error) {
-        res.status(400).json({ error });
-      }
-    });
+    await googleDrive.deleteFile(publicid)
+
+    // deleting the file record from datbase too
+    await resource.destroy()
+
+    res.json({message: `file ${resource.id} destroyed. Khatam! Finish! Goodbye! tata!`})
   } catch (error) {
-    res.status(400).json({ error: error.message || error.errors[0].message });
+    res.status(400).json({ error: error.message || error });
   }
 }
 
