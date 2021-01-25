@@ -5,8 +5,7 @@
 import 'dotenv/config';
 import { User, Resource, Like } from '../models';
 import bcrypt from 'bcryptjs';
-import { Op } from 'sequelize';
-import { parse } from 'dotenv';
+
 
 // CREATE A USER
 async function create(req, res) {
