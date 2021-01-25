@@ -5,8 +5,8 @@
 import { User, Resource, Like } from '../models';
 import { Op } from 'sequelize';
 import cloudinary from '../services/cloudinary';
-import { rmSync } from 'fs';
-import { rm } from 'fs/promises';
+import { rmSync, rm } from 'fs';
+// import { rm } from 'fs/promises';
 import { sequelize } from '../models';
 import Sequelize from 'sequelize';
 
@@ -39,8 +39,11 @@ async function create(req, res) {
         res.status(500).json({ message: 'Something happened while uploading the file to cloud', error });
       } finally {
         // remove the file from the server
-        // rmSync(FILE_PATH);
-        await rm(FILE_PATH);
+        rm(FILE_PATH, (err) => {
+          if (err) throw err;
+          console.log(`${FILE_PATH} uploaded successfully.`);
+        });
+        // await rm(FILE_PATH);
       }
     });
   } catch (error) {
