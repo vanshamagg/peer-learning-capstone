@@ -1,16 +1,19 @@
 {
-  "name": "studygram",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server/src/server.js",
-  "type": "module",
-  "scripts": {
-    "postinstall": "npm i --prefix ./server",
-    "start": "npm run start-prod --prefix server",
-    "start-dev": "node --experimental-modules babel-node server/src/index.js"
-  },
-  "author": "Vansham Aggarwal, Sagar Mounika, Basil Maben, Prince Khutela, Shiva Prasad",
-  "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {}
+    "name": "studygram",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server/src/server.js",
+    "engines": {
+        "node": "14.x"
+    },
+    "type": "module",
+    "scripts": {
+        "postinstall": "npm i --prefix ./server",
+        "start": "npm run start-prod --prefix server",
+        "start-dev": "node --experimental-modules babel-node server/src/index.js"
+    },
+    "author": "Vansham Aggarwal, Sagar Mounika, Basil Maben, Prince Khutela, Shiva Prasad",
+    "license": "MIT",
+    "dependencies": {},
+    "devDependencies": {}
 }
