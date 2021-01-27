@@ -8,7 +8,7 @@ import { rmSync } from 'fs';
 
 export const isRequestValidated = (req, res, next) => {
   const errors = validationResult(req);
-
+  console.log("VALIDATION ERROR HITTING >>>>>>>>>>>>>>>>>>")
   if (errors.array().length > 0) {
     // if there was a file uploaded and this error occured
     if (req.file) rmSync(req.file.path);

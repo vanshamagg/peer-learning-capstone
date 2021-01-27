@@ -9,6 +9,8 @@ import googleDrive from '../services/google-drive';
 
 // create a resource
 async function create(req, res) {
+  console.log("FILE CONTROLLER HITTING >>>>>>>>>>>>>>>")
+  console.log("FILE PROPS>>>>>>>>>>>>>>>>", req.file)
   const FILE_PATH = req.file.path;
   try {
     // find the user
