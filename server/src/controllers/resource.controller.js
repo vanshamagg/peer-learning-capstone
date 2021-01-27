@@ -10,8 +10,10 @@ import googleDrive from '../services/google-drive';
 // create a resource
 async function create(req, res) {
   console.log("FILE CONTROLLER HITTING >>>>>>>>>>>>>>>")
-  console.log("FILE PROPS>>>>>>>>>>>>>>>>", req.file)
+  console.log("FILE PROPS CONTROLLER >>>>>>>>>>>>>>>>", req.file)
+  console.log("REQ BODY >>>>>>>>>>>>>>>>", req.body)
   const FILE_PATH = req.file.path;
+  if(!req.file) throw new Error("No File Received")
   try {
     // find the user
     const user = await User.findOne({
@@ -34,6 +36,7 @@ async function create(req, res) {
     resource['file'] = file;
     res.json(resource);
   } catch (error) {
+    console.log(error.message)
     res.status(400).json({ error: error.message || error });
   } finally {
     // delete the temp file from the server
