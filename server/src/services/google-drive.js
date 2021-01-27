@@ -60,7 +60,7 @@ async function getDetails(fileId) {
       fileId,
       fields: 'description, webViewLink, webContentLink, mimeType',
     });
-    console.log(res.data);
+    // console.log(res.data);
     return Promise.resolve(res.data);
   } catch (error) {
     const errorMessage = `Google Drive Error: ${error.message}`;

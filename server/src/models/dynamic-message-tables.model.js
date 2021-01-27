@@ -28,7 +28,7 @@ export const createOrGetModel = async (modelName) => {
       },
     );
 
-    // associations
+    // ASSOCIATIONS
     User.hasMany(messageModel);
     messageModel.belongsTo(User);
 
@@ -47,8 +47,17 @@ export const createOrGetModel = async (modelName) => {
  */
 export const deleteModel = async (modelName) => {
   try {
+    // const isModelDefined = sequelize.isDefined(modelName);
+    // console.log(isModelDefined);
+
+    // const model = await createOrGetModel(modelName);
+    // console.dir(model);
+    // console.log("BEFORE DROPPING", sequelize.models)
+    // await model.drop({ logging: (msg) => console.log(msg), cascade: true });
     const [results, metadata] = await sequelize.query(`DROP TABLE IF EXISTS ${modelName}`);
-    return Promise.resolve({ results, metadata });
+    // console.log(sequelize.models)
+    return Promise.resolve(true);
+    // return Promise.resolve({ results, metadata });
   } catch (error) {
     return Promise.reject(error.message);
   }

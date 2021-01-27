@@ -2,8 +2,8 @@
  *      GROUP MODEL
  *
  *      This table will only have the meta data for all discussion group.
- *      The table for the messages is dynamically created and deleted when
- *      specific routes are accessed.
+ *      
+ *      
  */
 
 export default (sequelize, Sequelize) => {
@@ -15,7 +15,6 @@ export default (sequelize, Sequelize) => {
       description: { type: DataTypes.TEXT, allowNull: false },
       totalmessages: { type: DataTypes.INTEGER, defaultValue: 0 },
       totalmembers: { type: DataTypes.INTEGER, defaultValue: 0 },
-      messagetablename: { type: DataTypes.STRING, allowNull: false, unique: true },
     },
     {
       freezeTableName: true,

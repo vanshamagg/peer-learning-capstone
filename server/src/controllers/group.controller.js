@@ -2,14 +2,13 @@
  *
  *      controllers for /api/group
  */
-import { Groups, User, Sequelize } from '../models';
-import { createOrGetModel, deleteModel } from '../models/dynamic-message-tables.model';
+import { Groups, User } from '../models';
 /**
  *  Creates a group
  */
 async function create(req, res) {
   try {
-    const { name, description, members } = req.body;
+    const { name, description } = req.body;
 
     // check if a group exists by the name given
     const result = await Groups.findOne({
@@ -20,13 +19,12 @@ async function create(req, res) {
     if (result) throw new Error('A group by that name already exists');
 
     // name for the table that will hold this group's messsages
-    const messagetablename = req.body.name.split(' ').join('').toLowerCase() + 'messages';
+    // const messagetablename = cryptoRandomString({ length: 20, characters: 'abcdefghijklmnopqrstuvwxyz' }).toLowerCase();
 
     // entry in the groups table
     const group = await Groups.create({
       name,
       description,
-      messagetablename,
     });
 
     // adding the current logged in user as the admin
@@ -39,7 +37,7 @@ async function create(req, res) {
     await group.save();
 
     // creating a specific table for holding all the messages of this group
-    await createOrGetModel(messagetablename);
+    // await createOrGetModel(messagetablename);
 
     return res.json(group);
   } catch (error) {
@@ -70,7 +68,7 @@ async function deleteGroup(req, res) {
     if (!admins) throw new Error('Logged in user is not the admin of this group.');
 
     // delete the messages of the group
-    await deleteModel(group.messagetablename);
+    // await deleteModel(group.messagetablename);
 
     // delete the group from the group list
     await group.destroy();
@@ -79,7 +77,7 @@ async function deleteGroup(req, res) {
     res.json({ message: 'Group has been deleted' });
   } catch (error) {
     res.status(400).json({
-      error: error.message || error.errors[0].message || error,
+      error: error.message || error,
     });
   }
 }
@@ -284,6 +282,64 @@ async function leave(req, res) {
   }
 }
 
+/**
+ *  Post a message to a group
+ */
+async function postMessage(req, res) {
+  try {
+    const uid = req.user.id;
+    const gid = req.params.id;
+    const text = req.body.text;
+
+    // get the group;
+    const group = await Groups.findByPk(gid);
+    if (!group) throw new Error('Invalid Group ID');
+
+    // get the user
+    const user = await User.findByPk(uid);
+    if (!user) throw new Error('Invalid user ID hence invalid token');
+
+    // create the message for the user
+    const post = await user.createGroupPost({
+      text
+    });
+
+    // add the message for the group
+    // and reload the instance from the database
+    await group.addPost(post);
+    await post.reload();
+
+    res.json(post);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error: error.message || error });
+  }
+}
+
+/**
+ * Get all message of a group
+ */
+async function getPosts(req, res) {
+  try {
+    const gid = req.params.id;
+
+    // get the group
+    const group = await Groups.findByPk(gid);
+    if (!group) throw new Error('Invalid Group ID');
+
+    // get all the posts of the group
+    const posts = await group.getPosts({
+      attributes: {
+        exclude: ['groupId'],
+      },
+    });
+
+    res.json(posts);
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ error: error.message || error });
+  }
+}
 const controllers = {};
 controllers.create = create;
 controllers.addMember = addMember;
@@ -293,5 +349,7 @@ controllers.deleteMember = deleteMember;
 controllers.leave = leave;
 controllers.getMembers = getMembers;
 controllers.get = get;
+controllers.postMessage = postMessage;
+controllers.getPosts = getPosts;
 
 export default controllers;

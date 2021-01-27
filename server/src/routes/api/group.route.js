@@ -31,4 +31,7 @@ router.patch("/:id/join", controllers.join);
 router.patch("/:id/leave", controllers.leave);
 router.delete('/:id', controllers.deleteGroup);
 router.delete('/:id/member', controllers.deleteMember)
+router.post('/:id/post', controllers.postMessage)
+router.get('/:id/posts', controllers.getPosts)
+
 export default router;
