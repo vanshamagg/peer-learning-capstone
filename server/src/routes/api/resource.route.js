@@ -36,7 +36,7 @@ router.use(jwt);
 
 router.get('/all', controllers.getEverything);
 router.get('/:pk', isResourceIdValid, controllers.getSingle);
-router.post('/', multer.single('file'), isFileUploadValid, controllers.create);
+router.post('/', multer.single('asset'), isFileUploadValid, controllers.create);
 router.post('/:pk/like', isResourceIdValid, controllers.like);
 router.delete('/:pk', isResourceIdValid, controllers.deleteResource);
 
