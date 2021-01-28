@@ -42,9 +42,7 @@ async function create(req, res) {
     return res.json(group);
   } catch (error) {
     console.log(error);
-    res.status(400).json({
-      error: error.message || error.errors[0].message || error,
-    });
+    res.status(400).json({ error: error.message || error });
   }
 }
 
@@ -90,7 +88,8 @@ async function getMembers(req, res) {
     const gid = req.params.id;
     const group = await Groups.findByPk(gid);
     const members = await group.getMembers({
-      attributes: ['id', 'firstname', 'lastname'],
+      attributes: ['id', 'firstname', 'lastname', 'username'],
+      joinTableAttributes: []
     });
 
     // counting number of members
@@ -98,9 +97,7 @@ async function getMembers(req, res) {
     members.unshift({ totalmembers });
     res.json(members);
   } catch (error) {
-    res.status(400).json({
-      error: error.message || error.errors[0].message || error,
-    });
+    res.status(400).json({ error: error.message || error });
   }
 }
 
@@ -114,12 +111,31 @@ async function get(req, res) {
       attributes: {
         exclude: ['messagetablename'],
       },
+      include: [
+        {
+          model: User,
+          as: "Admins",
+          attributes: ['firstname', 'lastname', 'username'],
+          through: {
+            attributes: []
+          }
+        },
+        {
+          model: User,
+          as: "Members",
+          attributes: ['id','firstname', 'lastname', 'username'],
+          through: {
+            attributes: []
+          }
+        }
+      ],
+
     });
 
     if (!group) throw new Error('Invalid Group Id');
     res.json(group);
   } catch (error) {
-    res.status(400).json({ error: error.message || error.errors[0].message || error });
+    res.status(400).json({ error: error.message || error });
   }
 }
 
@@ -160,7 +176,7 @@ async function addMember(req, res) {
 
     res.json({ message: `Added user ${user.username} with id ${user.id} to the group ${group.name}` });
   } catch (error) {
-    res.status(400).json({ error: error.message || error.errors[0].message || error });
+    res.status(400).json({ error: error.message || error });
   }
 }
 
@@ -201,7 +217,7 @@ async function deleteMember(req, res) {
 
     res.json({ message: `Removed user ${user.username} with id ${user.id} to the group ${group.name}` });
   } catch (error) {
-    res.status(400).json({ error: error.message || error.errors[0].message || error });
+    res.status(400).json({ error: error.message || error });
   }
 }
 
@@ -236,7 +252,7 @@ async function join(req, res) {
 
     res.json({ message: `user ${user.firstname} ${user.lastname} (You) has been added to the ${group.name} ` });
   } catch (error) {
-    res.status(400).json({ error: error.message || error.errors[0].message || error });
+    res.status(400).json({ error: error.message || error });
   }
 }
 
@@ -278,7 +294,7 @@ async function leave(req, res) {
 
     res.json({ message: successMesasge });
   } catch (error) {
-    res.status(400).json({ error: error.message || error.errors[0].message || error });
+    res.status(400).json({ error: error.message || error });
   }
 }
 
@@ -301,13 +317,16 @@ async function postMessage(req, res) {
 
     // create the message for the user
     const post = await user.createGroupPost({
-      text
+      text,
     });
 
     // add the message for the group
     // and reload the instance from the database
     await group.addPost(post);
     await post.reload();
+
+    // increase the number of posts in the group
+    await group.increment('totalmessages')
 
     res.json(post);
   } catch (error) {
@@ -330,8 +349,14 @@ async function getPosts(req, res) {
     // get all the posts of the group
     const posts = await group.getPosts({
       attributes: {
-        exclude: ['groupId'],
+        exclude: ['groupId', 'userId'],
       },
+      include: [
+        {
+          model: User,
+          attributes: ['id', 'firstname', 'lastname', 'username']
+        }
+      ]
     });
 
     res.json(posts);

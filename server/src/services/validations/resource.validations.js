@@ -16,12 +16,13 @@ export const isFileUploadValid = [
     .withMessage('title should not be empty')
     .isLength({ min: 10, max: 100 })
     .withMessage('title should lie between 10 and 100 chars')
-    .trim()
-    .toLowerCase(),
+    .trim(),
   body('description')
     .notEmpty()
     .withMessage('file description cannot be empty')
     .isLength({ min: 0, max: 500 })
-    .withMessage('description can be maximum 500 chars'),
+    .withMessage('description can be maximum 500 chars')
+    .trim()
+    .escape(),
   isRequestValidated,
 ];

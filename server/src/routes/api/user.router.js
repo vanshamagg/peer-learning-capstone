@@ -26,10 +26,7 @@ router.use('/auth', authRouter);
  *              ENDPOINTS
  * ======================================
  *
- *  POST /api/user      creates a new user      attributes required- [ 'firstname', 'lastname', 'username', 'email', 'password' ]
- *  GET  /api/user      gets the user details for the JWT in the 'Authorization' Header
- *  PUT  /api/user      update user details     attributes that cannot be updated- ['username', 'email', 'password' ]
- *  GET  /api/user/resources    get all the resources uploaded by the user
+ * 
  */
 router.post('/', ValidateUserSignUp, controllers.create);
 router.get('/', jwt, controllers.get);

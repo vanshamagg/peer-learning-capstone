@@ -9,11 +9,11 @@ import googleDrive from '../services/google-drive';
 
 // create a resource
 async function create(req, res) {
-  console.log("FILE CONTROLLER HITTING >>>>>>>>>>>>>>>")
-  console.log("FILE PROPS CONTROLLER >>>>>>>>>>>>>>>>", req.file)
-  console.log("REQ BODY >>>>>>>>>>>>>>>>", req.body)
+  console.log('FILE CONTROLLER HITTING >>>>>>>>>>>>>>>');
+  console.log('FILE PROPS CONTROLLER >>>>>>>>>>>>>>>>', req.file);
+  console.log('REQ BODY >>>>>>>>>>>>>>>>', req.body);
   const FILE_PATH = req.file.path;
-  if(!req.file) throw new Error("No File Received")
+  if (!req.file) throw new Error('No File Received');
   try {
     // find the user
     const user = await User.findOne({
@@ -36,7 +36,7 @@ async function create(req, res) {
     resource['file'] = file;
     res.json(resource);
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
     res.status(400).json({ error: error.message || error });
   } finally {
     // delete the temp file from the server
@@ -110,12 +110,12 @@ async function getSingle(req, res) {
     reso.dataValues.likeCount = await reso.countLikes();
 
     // fetching and attaching cloud file details
-    reso = reso.toJSON()
+    reso = reso.toJSON();
     reso['file'] = await googleDrive.getDetails(reso.publicid);
-    
+
     res.send(reso);
   } catch (error) {
-    res.status(400).json({ error: error.message || error.errors[0].message });
+    res.status(400).json({ error: error.message || error });
   }
 }
 
@@ -135,12 +135,12 @@ async function deleteResource(req, res) {
     const publicid = resource.publicid;
 
     // deleting the file from cloud
-    await googleDrive.deleteFile(publicid)
+    await googleDrive.deleteFile(publicid);
 
     // deleting the file record from datbase too
-    await resource.destroy()
+    await resource.destroy();
 
-    res.json({message: `file ${resource.id} destroyed. Khatam! Finish! Goodbye! tata!`})
+    res.json({ message: `file ${resource.id} destroyed. Khatam! Finish! Goodbye! tata!` });
   } catch (error) {
     res.status(400).json({ error: error.message || error });
   }
@@ -175,7 +175,7 @@ async function like(req, res) {
     res.json(like);
   } catch (error) {
     console.log(error);
-    res.status(400).json({ error: error.message || error.errors[0].message || error });
+    res.status(400).json({ error: error.message || error });
   }
 }
 const controllers = {};

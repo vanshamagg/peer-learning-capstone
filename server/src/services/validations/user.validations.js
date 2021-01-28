@@ -4,6 +4,7 @@
 
 import { body } from 'express-validator';
 import { isRequestValidated } from './error';
+import { User } from '../../models';
 
 export const ValidateUserSignUp = [
   body('firstname')
@@ -31,14 +32,15 @@ export const ValidateUserSignUp = [
     .notEmpty()
     .withMessage('username cannot be empty')
     .isLength({ min: 6, max: 15 })
-    .withMessage('username can be from 6 to 15 chars'),
+    .withMessage('username can be from 6 to 15 chars')
+    .custom(checkUsernameInUse),
 
   body('password')
     .trim()
     .notEmpty()
     .withMessage('password cannot be empty')
     .isLength({ min: 6, max: 20 })
-    .withMessage('password should be from 6 to 50 chars'),
+    .withMessage('password should be from 6 to 20 chars'),
 
   body('email')
     .trim()
@@ -46,7 +48,8 @@ export const ValidateUserSignUp = [
     .withMessage('email cannot be empty')
     .isEmail()
     .withMessage('please send a valid email')
-    .normalizeEmail({ all_lowercase: true }),
+    .normalizeEmail({ all_lowercase: true })
+    .custom(checkEmailInUse),
 
   body('insti_name').trim().isLength({ max: 70 }).withMessage('name of institution cannot be more than 70 chars'),
 
@@ -107,3 +110,34 @@ export const ValidateUserSignUp = [
 
   isRequestValidated,
 ];
+
+/**
+ * Checks whether the email submitted
+ * is already in use or not
+ * @param {String} email email
+ */
+async function checkEmailInUse(email) {
+  try {
+    const user = await User.findOne({ where: { email } });
+    if (user) throw new Error(`email ${email} is already in use!`);
+
+    return Promise.resolve(false);
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+}
+/**
+ * checks whether the submitted username is
+ * already in user or not
+ * @param {String} username username
+ */
+async function checkUsernameInUse(username) {
+  try {
+    const user = await User.findOne({ where: { username } });
+    if (user) throw new Error(`username ${username} is already in use!`);
+
+    return Promise.resolve(false);
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+}

@@ -6,7 +6,6 @@ import 'dotenv/config';
 import { User, Resource, Like } from '../models';
 import bcrypt from 'bcryptjs';
 
-
 // CREATE A USER
 async function create(req, res) {
   try {
@@ -66,7 +65,7 @@ async function get(req, res) {
     if (!user) throw new Error('No User Exists by that username');
     res.json(user.toJSON());
   } catch (error) {
-    res.status(400).json({ error: error.message || error.errors[0].message || error });
+    res.status(400).json({ error: error.message || error });
   }
 }
 
@@ -93,7 +92,7 @@ async function update(req, res) {
 
     res.send({ message: 'user updated except username, email, password' });
   } catch (error) {
-    res.status(400).json({ error: error.message || error.errors[0].message || error });
+    res.status(400).json({ error: error.message || error });
   }
 }
 
@@ -120,7 +119,7 @@ async function getResources(req, res) {
 
     res.send(list);
   } catch (error) {
-    res.status(400).json({ error: error.message || error.errors[0].message });
+    res.status(400).json({ error: error.message || error });
   }
 }
 
@@ -158,7 +157,7 @@ async function getUser(req, res) {
 
     // res.json(user);
   } catch (error) {
-    res.status(400).json({ error: error.message || error.errors[0].message });
+    res.status(400).json({ error: error.message || error });
   }
 }
 

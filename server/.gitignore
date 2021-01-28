@@ -2,8 +2,14 @@
 package-lock.json
 
 /config/dev.js
+<<<<<<< HEAD
 
 #/public
+=======
+/security/cert.key
+/security/cert.pem
+#/public//
+>>>>>>> 624e61bc3954f00b867c9e6f87d4226417c387a4
 
 /.vscode
 .env
