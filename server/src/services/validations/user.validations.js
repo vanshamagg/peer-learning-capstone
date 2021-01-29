@@ -105,7 +105,7 @@ export const ValidateUserSignUp = [
   body('dob')
     .notEmpty()
     .withMessage('dob cannot be empty')
-    .isDate({ format: 'DD/MM/YYYY' })
+    .isDate({ format: 'MM/DD/YYYY' })
     .withMessage('Date of birth should be a valid date'),
 
   isRequestValidated,
