@@ -64,6 +64,14 @@ async function getEverything(req, res) {
             },
           ],
         },
+        {
+          model: Category,
+          as: 'Categories',
+          attributes: ['name', 'description'],
+          through: {
+            attributes: [],
+          },
+        },
       ],
     });
 
@@ -97,6 +105,14 @@ async function getSingle(req, res) {
               attributes: ['firstname', 'lastname'],
             },
           ],
+        },
+        {
+          model: Category,
+          as: 'Categories',
+          attributes: ['name', 'description'],
+          through: {
+            attributes: [],
+          },
         },
       ],
     });
