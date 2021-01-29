@@ -6,6 +6,7 @@ import ResourceModel from './Resource.model';
 import LikeModel from './Like.model';
 import GroupsModel from './Groups.model';
 import PostModel from './Post.model';
+import CategoryModel from './Category.model';
 
 // const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
 //   dialect: process.env.DB_DIALECT,
@@ -47,6 +48,7 @@ const Resource = ResourceModel(sequelize, Sequelize);
 const Like = LikeModel(sequelize, Sequelize);
 const Groups = GroupsModel(sequelize, Sequelize);
 const Post = PostModel(sequelize, Sequelize);
+const Category = CategoryModel(sequelize, Sequelize);
 /**
  * ======================================
  *              RELATIONSHIPS
@@ -78,9 +80,12 @@ Groups.hasMany(Post, { as: 'Posts' });
 Post.belongsTo(Groups);
 
 // User and Messages Mant -To- One
-User.hasMany(Post, {as: "GroupPosts"})
-Post.belongsTo(User)
+User.hasMany(Post, { as: 'GroupPosts' });
+Post.belongsTo(User);
 
+//  Resources and Categories - many to many
+Resource.belongsToMany(Category, { through: 'rescatjoin', as: 'Categories' });
+Category.belongsToMany(Resource, { through: 'rescatjoin', as: 'Resources' });
 
 export default db;
-export { sequelize, Sequelize, User, Resource, Like, Groups, Post };
+export { sequelize, Sequelize, User, Resource, Like, Groups, Post, Category };

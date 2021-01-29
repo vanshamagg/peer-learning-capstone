@@ -2,19 +2,17 @@
  *      controllers for /api/resource
  *
  */
-import { User, Resource, Like } from '../models';
+import { User, Resource, Like, Category } from '../models';
 import drive from '../services/google-drive';
 import { rm } from 'fs/promises';
 import googleDrive from '../services/google-drive';
 
 // create a resource
 async function create(req, res) {
-  console.log('FILE CONTROLLER HITTING >>>>>>>>>>>>>>>');
-  console.log('FILE PROPS CONTROLLER >>>>>>>>>>>>>>>>', req.file);
-  console.log('REQ BODY >>>>>>>>>>>>>>>>', req.body);
   const FILE_PATH = req.file.path;
-  if (!req.file) throw new Error('No File Received');
   try {
+    if (!req.file) throw new Error('No File Received');
+
     // find the user
     const user = await User.findOne({
       where: { id: req.user.id },
@@ -31,7 +29,7 @@ async function create(req, res) {
       type: req.file.type,
       publicid: file.id,
     });
-
+    console.log(Object.keys(resource.__proto__));
     resource = resource.toJSON();
     resource['file'] = file;
     res.json(resource);
@@ -178,12 +176,73 @@ async function like(req, res) {
     res.status(400).json({ error: error.message || error });
   }
 }
+
+/**
+ * add one single category to the resource
+ */
+async function addCategory(req, res) {
+  try {
+    const rid = req.params.id;
+
+    // get the resource from the db
+    const resource = await Resource.findByPk(rid);
+    if (!resource) throw new Error(`Resource with id ${rid} does not exist`);
+
+    // add the category to the resource
+    const category = await Category.findOne({
+      where: {
+        name: req.body.category,
+      },
+    });
+    if (!category) throw new Error(`cannot find category with name ${req.body.category} `);
+    await resource.addCategory(category);
+
+    res.json({ message: `added category ${category.name} to the resource ${resource.title}` });
+  } catch (error) {
+    res.status(400).json({ error: error.message || error });
+  }
+}
+
+/**
+ * remove category from the resource
+ */
+async function removeCategory(req, res) {
+  try {
+    const rid = req.params.id;
+
+    // get the resource from the db
+    const resource = await Resource.findByPk(rid);
+    if (!resource) throw new Error(`Resource with id ${rid} does not exist`);
+
+    // get the category from the db
+    const category = await Category.findOne({
+      where: {
+        name: req.body.category,
+      },
+    });
+    if (!category) throw new Error(`cannot find category with name ${req.body.category} `);
+
+    // check if the resouce has the category sent or not
+    const hasCategory = await resource.hasCategory(category);
+
+    if (!hasCategory)
+      throw new Error(`resource ${resource.title} id ${resource.id} doesn not have the category ${category.name} `);
+
+    // remove the category from the resource
+    await resource.removeCategory(category);
+
+    res.json({ message: `removed category ${category.name} from the resource ${resource.title}` });
+  } catch (error) {
+    res.status(400).json({ error: error.message || error });
+  }
+}
 const controllers = {};
 
 controllers.create = create;
+controllers.addCategory = addCategory;
 controllers.getSingle = getSingle;
 controllers.getEverything = getEverything;
 controllers.deleteResource = deleteResource;
+controllers.removeCategory = removeCategory;
 controllers.like = like;
-
 export default controllers;

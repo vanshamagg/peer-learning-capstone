@@ -4,6 +4,7 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import api from './routes/api';
+import admin from './admin/routes';
 import 'colors';
 import listendpoints from 'express-list-endpoints';
 
@@ -16,12 +17,14 @@ const PORT = process.env.PORT || 3000;
  * ======================================
  */
 app.use(morgan('dev'));
-app.use(cors({
-  "origin": "*",
-  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS",
-  "preflightContinue": false,
-  "optionsSuccessStatus": 204
-}));
+app.use(
+  cors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS',
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  }),
+);
 
 /**
  * ======================================
@@ -29,6 +32,7 @@ app.use(cors({
  * ======================================
  */
 app.use('/api', api);
+app.use('/admin', admin);
 
 /**
  * ======================================
@@ -47,4 +51,3 @@ app.get('/', (req, res) => {
  */
 console.log(listendpoints(app));
 const server = app.listen(PORT, (_) => console.log(`Server started at port ${server.address().port}`.inverse));
-

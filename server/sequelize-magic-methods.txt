@@ -1,0 +1,82 @@
+GROUP magic methods
+
+[
+  '_customGetters',    '_customSetters',
+  'validators',        '_hasCustomGetters',
+  '_hasCustomSetters', 'rawAttributes',
+  '_isAttribute',      'getAdmins',
+  'countAdmins',       'hasAdmin',
+  'hasAdmins',         'setAdmins',
+  'addAdmin',          'addAdmins',
+  'removeAdmin',       'removeAdmins',
+  'createAdmin',       'getMembers',
+  'countMembers',      'hasMember',
+  'hasMembers',        'setMembers',
+  'addMember',         'addMembers',
+  'removeMember',      'removeMembers',
+  'createMember',      'getPosts',
+  'countPosts',        'hasPost',
+  'hasPosts',          'setPosts',
+  'addPost',           'addPosts',
+  'removePost',        'removePosts',
+  'createPost'
+]
+
+USER magic methods
+
+[
+  '_customGetters',     '_customSetters',    'validators',
+  '_hasCustomGetters',  '_hasCustomSetters', 'rawAttributes',
+  '_isAttribute',       'getResources',      'countResources',
+  'hasResource',        'hasResources',      'setResources',
+  'addResource',        'addResources',      'removeResource',
+  'removeResources',    'createResource',    'getLikes',
+  'countLikes',         'hasLike',           'hasLikes',
+  'setLikes',           'addLike',           'addLikes',
+  'removeLike',         'removeLikes',       'createLike',
+  'getAdminGroups',     'countAdminGroups',  'hasAdminGroup',
+  'hasAdminGroups',     'setAdminGroups',    'addAdminGroup',
+  'addAdminGroups',     'removeAdminGroup',  'removeAdminGroups',
+  'createAdminGroup',   'getMemberGroups',   'countMemberGroups',
+  'hasMemberGroup',     'hasMemberGroups',   'setMemberGroups',
+  'addMemberGroup',     'addMemberGroups',   'removeMemberGroup',
+  'removeMemberGroups', 'createMemberGroup', 'getGroupPosts',
+  'countGroupPosts',    'hasGroupPost',      'hasGroupPosts',
+  'setGroupPosts',      'addGroupPost',      'addGroupPosts',
+  'removeGroupPost',    'removeGroupPosts',  'createGroupPost'
+]
+
+RESOURCE magic methods
+
+[
+  '_customGetters',    '_customSetters',
+  'validators',        '_hasCustomGetters',
+  '_hasCustomSetters', 'rawAttributes',
+  '_isAttribute',      'getUser',
+  'setUser',           'createUser',
+  'getLikes',          'countLikes',
+  'hasLike',           'hasLikes',
+  'setLikes',          'addLike',
+  'addLikes',          'removeLike',
+  'removeLikes',       'createLike',
+  'getCategories',     'countCategories',
+  'hasCategory',       'hasCategories',
+  'setCategories',     'addCategory',
+  'addCategories',     'removeCategory',
+  'removeCategories',  'createCategory'
+]
+
+CATEGORY magic methods 
+[
+  '_customGetters',    '_customSetters',
+  'validators',        '_hasCustomGetters',
+  '_hasCustomSetters', 'rawAttributes',
+  '_isAttribute',      'getResources',
+  'countResources',    'hasResource',
+  'hasResources',      'setResources',
+  'addResource',       'addResources',
+  'removeResource',    'removeResources',
+  'createResource'
+]
+
+
