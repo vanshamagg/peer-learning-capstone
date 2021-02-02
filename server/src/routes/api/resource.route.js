@@ -34,6 +34,7 @@ router.use(jwt);
  *
  */
 
+router.get('/category', controllers.categoryWise);
 router.get('/all', controllers.getEverything);
 router.get('/:pk', isResourceIdValid, controllers.getSingle);
 router.post('/', multer.single('asset'), isFileUploadValid, controllers.create);

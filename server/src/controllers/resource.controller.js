@@ -176,17 +176,23 @@ async function like(req, res) {
     //  let's see if the user has liked this resource or not
     const like = await resource.getLikes({ where: { userId: user.id } });
 
+    const message = {};
     // if the like exists. we remove the like from DB
     if (like[0]) {
       await resource.removeLike(like[0].id);
-      return res.json({ mesasge: 'UNLIKED' });
+      message['message'] = 'UNLIKED';
     }
     // if it doesn't exist, we create one
     else {
       await resource.createLike({ userId: user.id });
-      return res.json({ mesasge: 'LIKED' });
+      message['message'] = 'LIKED';
     }
-    res.json(like);
+
+    // get the updated number of likes
+    const likeCount = await resource.countLikes();
+    message['likeCount'] = likeCount;
+
+    res.json(message);
   } catch (error) {
     console.log(error);
     res.status(400).json({ error: error.message || error });
@@ -252,6 +258,48 @@ async function removeCategory(req, res) {
     res.status(400).json({ error: error.message || error });
   }
 }
+
+/**
+ * get resource category wise
+ * 'q' is the query param in the URL string
+ */
+
+async function categoryWise(req, res) {
+  try {
+    const query = req.query.q;
+
+    // get the category
+    const list = await Category.findOne({
+      where: {
+        name: query,
+      },
+      include: [
+        {
+          model: Resource,
+          as: 'Resources',
+          through: {
+            attributes: [],
+          },
+          attributes: {
+            exclude: ['userId'],
+          },
+          include: [
+            {
+              model: User,
+              attributes: ['firstname', 'lastname', 'username'],
+            },
+          ],
+        },
+      ],
+    });
+
+    if (!list) throw new Error(`No category exists by the name of ${query}`);
+
+    res.json(list);
+  } catch (error) {
+    res.status(400).json({ error: error.message || error });
+  }
+}
 const controllers = {};
 
 controllers.create = create;
@@ -260,5 +308,6 @@ controllers.getSingle = getSingle;
 controllers.getEverything = getEverything;
 controllers.deleteResource = deleteResource;
 controllers.removeCategory = removeCategory;
+controllers.categoryWise = categoryWise;
 controllers.like = like;
 export default controllers;

@@ -3,7 +3,7 @@
  */
 
 import 'dotenv/config';
-import { User, Resource, Like } from '../models';
+import { User, Resource, Like, Groups } from '../models';
 import bcrypt from 'bcryptjs';
 
 // CREATE A USER
@@ -142,6 +142,21 @@ async function getUser(req, res) {
         attributes: {
           exclude: ['password'],
         },
+        include: [
+          {
+            model: Resource,
+            attributes: {
+              exclude: ['userId'],
+            },
+          },
+          {
+            model: Groups,
+            as: 'MemberGroups',
+            through: {
+              attributes: [],
+            },
+          },
+        ],
       });
     } else {
       // query is a number
@@ -149,6 +164,21 @@ async function getUser(req, res) {
         attributes: {
           exclude: ['password'],
         },
+        include: [
+          {
+            model: Resource,
+            attributes: {
+              exclude: ['userId'],
+            },
+          },
+          {
+            model: Groups,
+            as: 'MemberGroups',
+            through: {
+              attributes: [],
+            },
+          },
+        ],
       });
     }
 

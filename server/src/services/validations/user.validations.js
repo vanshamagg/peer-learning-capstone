@@ -97,8 +97,6 @@ export const ValidateUserSignUp = [
     .withMessage('country cannot be empty')
     .trim()
     .toLowerCase()
-    .isAlpha()
-    .withMessage('country name can only be alpha')
     .isLength({ min: 2, max: 100 })
     .withMessage('country name should be from 2 and 100 chars'),
 
