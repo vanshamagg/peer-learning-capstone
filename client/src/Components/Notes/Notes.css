@@ -1,0 +1,51 @@
+.notes {
+  background-color: var(--secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  color: var(--primary);
+}
+.notes_grid {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: space-around;
+}
+.notes > button,
+.notes > button  .MuiSvgIcon-root{
+  margin: auto;
+  display: flex;
+  align-items: center;
+  /* width: 10%; */
+  padding: 1rem;
+  padding-bottom: 0;
+  background-color: var(--secondary);
+  outline: none;
+  border: none;
+  color: var(--primary);
+  font-size: 2.5em;
+  font-weight: 800;
+}
+.notes > button:hover,
+.notes > button:focus,
+.notes > button:active,
+.notes > button .MuiSvgIcon-root
+ {
+  background-color: var(--secondary)!important;
+  border: none!important;
+  color: var(--primary);
+  outline: none!important;
+  box-shadow: none!important;
+  
+}
+/* .notes > div {
+  margin: 1rem;
+  flex: 0 40%;
+  background-color: #376e6f;
+  color: var(--primary) !important;
+  padding: 1rem;
+}
+.notes > div .like-icon {
+  cursor: pointer;
+} */

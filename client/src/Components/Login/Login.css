@@ -1,14 +1,15 @@
 .login {
   width: 50% !important;
   margin: 10px auto;
-
-  border: 1px solid #376e37;
+  border: 1px solid var(--secondary);
   padding: 2em;
-
-  background-color: #376e6f;
-  color: #da7b93;
+  background-color: var(--primary);
+  /* color: var(--secondary);
+   */
+   color:white;
   border-radius: 10px;
   text-align: center;
+
 }
 
 .login input {
@@ -21,8 +22,8 @@
 }
 .login_avatar {
   margin: 3px auto;
-  color: #376e37 !important;
-  background-color: #da7b93 !important;
+  color: var(--secondary) !important;
+  background-color: var(--primary)b6 !important;
 }
 .login_email,
 .login_password {
@@ -34,19 +35,21 @@
   font-size: 2rem !important;
 }
 .login button {
-  border-color: #da7b93;
+  /* border-color: var(--primary); */
   width: 90px;
-  background-color: #fff;
-  color: #376e37;
+  background-color: var(--secondary);
+  color: var(--primary);
   padding: 0.5rem;
   text-decoration: none !important;
   margin-bottom: 1rem;
+  font-weight: 600;
 }
 .login button:hover,
 .login button:focus {
-  background-color: #da7b93;
+  background-color: var(--primary);
+  opacity: 0.7;
   outline: none;
-  color: #376e37;
+  color: var(--secondary);
   border: none;
   box-shadow: none;
 }

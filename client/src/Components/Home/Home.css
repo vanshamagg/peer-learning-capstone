@@ -8,9 +8,9 @@
   font-size: 20px;
 }
 .home_card {
-  box-shadow: 19px 22px 8px -15px #da7b93;
-  background-color: #376e6f;
-  color: #da7b93;
+  box-shadow: 19px 22px 8px -15px var(--secondary);
+  background-color: var(--primary);
+  color: var(--secondary);
   width: 100%;
   padding: 2.5rem;
   text-align: center;
@@ -23,10 +23,11 @@
   text-decoration: none !important;
 }
 .home_card button {
-  border-color: #376e6f;
+  border-color: var(--primary);
 
   background-color: #fff;
-  color: #da7b93;
+  color: var(--primary);
+  font-weight:800;
   padding: 0.5rem;
   text-decoration: none !important;
   margin-bottom: 1rem;
@@ -37,9 +38,9 @@
 }
 .home_card button:hover,
 .home_card button:focus {
-  background-color: #da7b93;
+  background-color: var(--secondary);
   outline: none;
-  color: #376e37;
+  color: var(--primary);
   border: none;
   box-shadow: none;
 }

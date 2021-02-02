@@ -1,0 +1,23 @@
+.modal-content,
+.modal-content span
+{
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+.uploadForm_footer button {
+  outline: none;
+  border: none !important;
+  color: var(--primary) !important;
+  background-color: var(--secondary) !important;
+}
+
+.uploadForm_footer button:hover,
+.uploadForm_footer button:focus,
+.uploadForm_footer button:active {
+  color: var(--primary) !important;
+  background-color: var(--secondary) !important;
+  border: none !important;
+  outline: none !important;
+  border-radius: none !important;
+}

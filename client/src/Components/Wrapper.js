@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navigation from './Navigation/Navigation.js';
+
 import { Redirect } from 'react-router-dom';
 import Body from './Body/Body.js';
 function Wrapper() {
@@ -13,6 +13,7 @@ function Wrapper() {
   }
   return (
     <div className="wrapper">
+    
       <Body />
     </div>
   );

@@ -1,4 +1,4 @@
-.body {
+.body1 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -8,32 +8,38 @@
   overflow: hidden !important;
   height: 85vh;
 }
-.body a {
+/* .body a {
   display: block;
   width: 50%;
   text-decoration: none;
   align-self: center;
   text-align: center;
   color: white;
-}
+} */
 .body_notes,
 .body_discussion {
   height: 85vh;
-  overflow-y: hidden;
-  background-color: #376e6f;
+  cursor: pointer;
+  /* overflow-y: hidden; */
+  background-color: var(--primary);
+  color: var(--secondary);
+  font-weight: 900;
+  width: 50%;
+  border-left: 1px solid gray;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+/* 
+.body_notes {
+  background-color: var(--primary);
+  color: var(--secondary);
+} */
 
-.body_discussion {
-  background-color: #da7b93;
-}
-
-.body_notes:hover,
+/* .body_notes:hover,
 .body_discussion:hover {
   opacity: 0.8;
-}
+} */
 .body_icon {
   font-size: 3rem !important;
 }
