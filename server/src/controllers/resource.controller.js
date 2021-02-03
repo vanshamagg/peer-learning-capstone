@@ -300,11 +300,24 @@ async function categoryWise(req, res) {
     res.status(400).json({ error: error.message || error });
   }
 }
+
+/**
+ * get the list of all categories
+ */
+async function allCategories(req, res) {
+  try {
+    const list = await Category.findAll();
+    res.json(list);
+  } catch (error) {
+    res.status(500).json({ error: error.message || error });
+  }
+}
 const controllers = {};
 
 controllers.create = create;
 controllers.addCategory = addCategory;
 controllers.getSingle = getSingle;
+controllers.allCategories = allCategories
 controllers.getEverything = getEverything;
 controllers.deleteResource = deleteResource;
 controllers.removeCategory = removeCategory;

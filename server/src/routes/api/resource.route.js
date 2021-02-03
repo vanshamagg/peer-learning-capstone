@@ -26,16 +26,11 @@ router.use(jwt);
  *              ENDPOINTS
  * ======================================
  *
- *      GET /api/resource/all       gets every single PDF, image from the database      no extra information required
- *      GET /api/resource/:pk       gets the details of only the resource belonging to the primary key 'pk'
- *      POST /api/resource          uploads a single file to the cloud      {'file', 'description'} attributes are required
- *      POST  /api/resource/:pk/like    toggles the like for the resource reffered to the primary key 'pk'
- *      DELETE /api/resource/:pk    deletes a resource using its primary key        only pk is required
- *
  */
 
 router.get('/category', controllers.categoryWise);
 router.get('/all', controllers.getEverything);
+router.get('/categories', controllers.allCategories)
 router.get('/:pk', isResourceIdValid, controllers.getSingle);
 router.post('/', multer.single('asset'), isFileUploadValid, controllers.create);
 router.post('/:id/category', controllers.addCategory)
