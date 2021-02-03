@@ -1,0 +1,39 @@
+.notes_main {
+  background-color: var(--secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 2rem; */
+  color: var(--primary);
+  width:80%;
+}
+.notes_main_grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.notes_main > button,
+.notes_main > button .MuiSvgIcon-root {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  /* width: 10%; */
+  padding: 1rem;
+  padding-bottom: 0;
+  background-color: var(--secondary);
+  outline: none;
+  border: none;
+  color: var(--primary);
+  font-size: 2.5em;
+  font-weight: 800;
+}
+.notes_main > button:hover,
+.notes_main > button:focus,
+.notes_main > button:active,
+.notes_main > button .MuiSvgIcon-root {
+  background-color: var(--secondary) !important;
+  border: none !important;
+  color: var(--primary);
+  outline: none !important;
+  box-shadow: none !important;
+}

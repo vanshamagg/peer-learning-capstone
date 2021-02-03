@@ -1,0 +1,25 @@
+// import React from 'react';
+// import './SideBar.css';
+// import SideBarOption from "./SideBarOption.js";
+// import FiberManualRecordRoundedIcon from "@material-ui/icons/FiberManualRecordRounded";
+// import CreateIcon from "@material-ui/icons/Create";
+// import InsertCommentRoundedIcon from "@material-ui/icons/InsertCommentRounded";
+// import InboxIcon from "@material-ui/icons/Inbox";
+// import DraftsIcon from "@material-ui/icons/Drafts";
+// import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
+// import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
+// import AppsIcon from "@material-ui/icons/Apps";
+// import FileCopyIcon from "@material-ui/icons/FileCopy";
+// function Sidebar() {
+//   return (
+//     <div className="notes_sidebar">
+//       <SideBarOption Icon={InsertCommentRoundedIcon} title="Threads" />
+//       <SideBarOption Icon={InboxIcon} title="Mentions & reactions" />
+//       <SideBarOption Icon={DraftsIcon} title="Saved items" />
+//       <SideBarOption Icon={BookmarkBorderIcon} title="Channel browser" />
+//       <SideBarOption Icon={PeopleAltIcon} title="People & user groups" />
+//     </div>
+//   );
+// }
+
+// export default Sidebar;

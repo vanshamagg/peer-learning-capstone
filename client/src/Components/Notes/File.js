@@ -1,17 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card, Button } from 'react-bootstrap';
-import Typography from '@material-ui/core/Typography';
+import { Card } from 'react-bootstrap';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
-import './Image.css';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import ShareIcon from '@material-ui/icons/Share';
+import './File.css';
 
-function Image({ file }) {
+function File({ file, id }) {
   // console.log(like,file)
 
   // const [color, setColor] = useState(white);
   const token = localStorage.getItem('token');
   const [like, setLike] = useState(null);
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: `https://studygram-dev.herokuapp.com/api/resource/${id}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((response) => {
+      console.log('Response', response);
+      setLike(response.data.likeCount);
+    });
+  }, [file.view]);
+
   const addLike = async (id) => {
     axios({
       method: 'post',
@@ -33,8 +48,8 @@ function Image({ file }) {
       .then((response) => {
         console.log('Response', response);
         setLike(response.data.likeCount);
-        // const Button = e.target.style.Color;
-        // const newButton = e.target.style.Color;
+        // const button = e.target.style.Color;
+        // const newbutton = e.target.style.Color;
         // const newColor = color === white ? pink : white;
         // setColor(newColor);
       })
@@ -51,9 +66,12 @@ function Image({ file }) {
   // };
 
   return (
-    <Card className="image">
+    <Card className="file">
       <Card.Header>
-        <h3>{file.title}</h3>
+        <div className="file_top" >
+          <h4> {file.title} </h4> <ShareIcon  />
+        </div>
+
         <blockquote className="blockquote mb-0 mr-0">
           <p>Uploaded By {file.user.firstname} </p>
         </blockquote>
@@ -68,29 +86,39 @@ function Image({ file }) {
       </Card.Body>
 
       <Card.Footer className="card-footer">
-        <Button
+        <button
           onClick={(e) => {
             e.preventDefault();
             addLike(file.id);
           }}
         >
           {' '}
-          <FavoriteIcon className="like-icon" /> {' '}
-        </Button>
-        {like}
-        <Button>
-          <a href={file.file.webViewLink} target="_blank">
+          <ThumbUpAltIcon className="like-icon" /> {like}
+        </button>
+
+        <button>
+          <VisibilityIcon /> {file.views}
+        </button>
+        <button>
+          <a href={file.file.webViewLink} target="_blank" without rel="noopener noreferrer">
             View
           </a>
-        </Button>
-        <Button>
-          <a href={file.file.webContentLink} download target="_blank">
+        </button>
+
+        <button>
+          <a
+            href={file.file.webContentLink}
+            download
+            target="_blank"
+            without
+            rel="noopener noreferrer"
+          >
             Download <CloudDownloadIcon />
           </a>
-        </Button>
+        </button>
       </Card.Footer>
     </Card>
   );
 }
 
-export default Image;
+export default File;

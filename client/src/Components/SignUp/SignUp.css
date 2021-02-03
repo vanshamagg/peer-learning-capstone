@@ -10,13 +10,12 @@
   border-radius: 10px;
   text-align: center;
   text-transform: capitalize;
-  color:var(--secondary);
+  color: var(--secondary);
   font-size: 1em;
 }
 .signUp h2,
-.signup p
-{
-  font-size:2.5em;
+.signup p {
+  font-size: 2.5em;
 }
 .signUp input {
   margin: 1rem auto;
@@ -33,8 +32,8 @@
 .signUp button {
   font-weight: 900;
   margin-top: 8px;
-  background-color: rgb(115, 196, 221);
-  color: black !important;
+ border:2px solid var(--secondary);
+  color: var(--secondary);
   padding: 0.5rem;
   text-decoration: none !important;
   margin-bottom: 1em;
@@ -47,18 +46,17 @@
   border: none;
   box-shadow: none;
 }
-.signUp a{
+.signUp a {
   text-decoration: none;
-  font-size:1.2em;
-  font-weight:700;
+  font-size: 1.2em;
+  font-weight: 700;
   color: rgba(236, 47, 79, 0.884);
 }
-.select.form-control{
- 
-  margin:16px 0!important;
+.select.form-control {
+  margin: 16px 0 !important;
 }
-.signUp a:hover{
-  color:var(--secondary)!important;
+.signUp a:hover {
+  color: var(--secondary) !important;
 }
 .signUp input:focus {
   outline: none !important;
@@ -66,16 +64,14 @@
   border: none !important;
 }
 
-
-
 .alert-fixed {
-    position:fixed; 
-    top: 20px; 
-    left:50%;
-    transform: translatex(-50%) !important;
-    width: 60%;
-    z-index:9999; 
-    border-radius:0px
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translatex(-50%) !important;
+  width: 60%;
+  z-index: 9999;
+  border-radius: 0px;
 }
 
 @media only screen and (max-width: 600px) {

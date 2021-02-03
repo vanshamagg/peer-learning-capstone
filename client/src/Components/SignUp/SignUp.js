@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import AlertDismissible from './AlertDismissible'
-import Navigation from '../Navigation/Navigation.js';
+import AlertDismissible from './AlertDismissible';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './SignUp.css';
-import { Form, Button, Col,  } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
+import { Form, Button, Col } from 'react-bootstrap';
 
 function SignUp() {
   const [isRegistered, setIsRegistered] = useState(false);
@@ -145,19 +143,19 @@ function SignUp() {
     };
     console.log(data);
     // }
-   await axios
+    await axios
       .post('https://studygram-dev.herokuapp.com/api/user', data)
       .then((response) => {
         console.log(response);
-        localStorage.setItem('token', response.data.token);
+
         setIsRegistered(true);
         setShow(true);
       })
-      .catch((err) =>  {
-       const error = (err.response.data.error);
-      //  error.map(err => err)
-       alert(error.map(err => err));
-      } )
+      .catch((err) => {
+        const error = err.response.data.error;
+        //  error.map(err => err)
+        alert(error.map((err) => err));
+      });
   };
 
   return (
@@ -397,7 +395,7 @@ function SignUp() {
           </Button>
         </Form>
       </div>
-      {isRegistered && <AlertDismissible show={show}/>}
+      {isRegistered && <AlertDismissible show={show} />}
     </>
   );
 }

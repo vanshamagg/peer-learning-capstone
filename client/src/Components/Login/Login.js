@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
 import { Redirect } from 'react-router-dom';
@@ -27,16 +27,17 @@ function Login() {
       password: password,
     };
     console.log(data);
-   await axios
+    await axios
       .post('https://studygram-dev.herokuapp.com/api/user/auth', data)
       .then((response) => {
         localStorage.setItem('token', response.data.token);
+        localStorage.setItem('fname', response.data.firstname);
+        localStorage.setItem('lname', response.data.lastname);
         setIsLoggedIn(true);
-       
       })
       .catch((error) => alert('Invalid Credentials'));
   };
-  
+
   if (isLoggedIn) {
     return <Redirect to="/wrapper" />;
   }
@@ -45,7 +46,7 @@ function Login() {
       {/* <Navigation /> */}
       <div className="login">
         <Form onSubmit={(e) => loginHandler(e)}>
-          <Avatar src="/broken-image.jpg" className="login_avatar" />
+          <Avatar  className="login_avatar" />
           <h2>Student Login </h2>
           <Form.Group controlId="formBasicEmail" className="login_email">
             <PersonIcon className="login_icon" />
@@ -69,6 +70,9 @@ function Login() {
           <Button variant="link" type="submit" onClick={(e) => loginHandler(e)}>
             Login
           </Button>
+          <p>
+            Not on StudyGram yet? {' '} <Link to="/signup"> Sign up</Link>
+          </p>
         </Form>
       </div>
     </>

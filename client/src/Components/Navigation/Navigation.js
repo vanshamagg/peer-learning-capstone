@@ -1,33 +1,67 @@
-import React from 'react';
+import React, { useState} from 'react';
+import { Redirect } from 'react-router-dom';
 import './Navigation.css';
 import { LinkContainer } from 'react-router-bootstrap';
-
-import { Navbar, Nav, Form, FormControl } from 'react-bootstrap';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Avatar from '@material-ui/core/Avatar';
+import { Navbar, Nav, Button } from 'react-bootstrap';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import logo from './org2.png';
 function Navigation() {
-  return (
-    <Navbar className="navigation">
-      <LinkContainer to="/wrapper">
-        <Navbar.Brand>
-          <img src={logo} />
-        </Navbar.Brand>
-      </LinkContainer>
+  const lname = localStorage.getItem('lname');
+  const fname = localStorage.getItem('fname');
+  const name = `${fname} ${lname}`;
+  const [loggedOut, setLoggedOut] = useState(false);
+  console.log(name);
 
-      <Nav className="ml-auto">
-        <Form inline>
-          <FormControl
-            type="text"
-            placeholder="Search"
-            // className="mr-sm-2"
-            className="navigation_search"
-          />
-        </Form>
-        <h2>
-          <AccountCircleIcon className="navigation_userIcon" />
-        </h2>
-      </Nav>
-    </Navbar>
+  const getInitials = (name, delimeter) => {
+    if (name) {
+      const array = name.split(delimeter);
+      switch (array.length) {
+        case 1:
+          return array[0].charAt(0).toUpperCase();
+          break;
+        default:
+          return array[0].charAt(0).toUpperCase() + array[array.length - 1].charAt(0).toUpperCase();
+      }
+    }
+    return false;
+  };
+
+  const HandleLogout = () => {
+    localStorage.clear();
+    setLoggedOut(true);
+  };
+
+  if (loggedOut) {
+    return <Redirect to="/" />;
+  }
+  return (
+    <>
+      {!localStorage.token ? (
+        <Navbar className="navigation">
+          <LinkContainer to="/wrapper">
+            <Navbar.Brand>
+              <img src={logo} alt="StudyGram"/>
+            </Navbar.Brand>
+          </LinkContainer>
+        </Navbar>
+      ) : (
+        <Navbar className="navigation">
+          <LinkContainer to="/wrapper">
+            <Navbar.Brand>
+              <img src={logo} alt="StudyGram"/>
+            </Navbar.Brand>
+          </LinkContainer>
+          <Nav className="ml-auto">
+            <Avatar className="navigation_userIcon">{getInitials(name, ' ')}</Avatar>
+
+            <Button onClick={HandleLogout}>
+              Logout <ExitToAppIcon />
+            </Button>
+          </Nav>
+        </Navbar>
+      )}
+    </>
   );
 }
 

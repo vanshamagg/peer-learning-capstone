@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import Wrapper from '../Wrapper.js';
 import Home from '../Home/Home.js';
 import Notes from '../Notes/Notes.js';
@@ -9,7 +9,7 @@ import Navigation from '..//Navigation/Navigation.js';
 import PrivateRoute from './PrivateRoute.js';
 import PublicRoute from './PublicRoute.js';
 
-import { withRouter } from 'react-router-dom';  
+import { withRouter } from 'react-router-dom';
 const Routes = withRouter(({ location }) => {
   return (
     <div>
@@ -20,7 +20,7 @@ const Routes = withRouter(({ location }) => {
         <PublicRoute restricted={true} component={Login} path="/login" exact />
         <PublicRoute restricted={true} component={SignUp} path="/signup" exact />
         <PrivateRoute component={Wrapper} path="/wrapper" exact />
-        <Notes />
+        <PrivateRoute component={Notes} path="/wrapper/notes" exact />
       </Switch>
     </div>
   );
