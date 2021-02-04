@@ -10,9 +10,9 @@ function Home() {
           <Card.Title>
             <h2>StudyGram</h2>
           </Card.Title>
-          <Card.Text>
+       
             <p>Learn,Share,Discuss...</p>
-          </Card.Text>
+          
           <Link to="/login">
             <Button variant="link" block >
               Login

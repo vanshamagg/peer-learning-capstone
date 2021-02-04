@@ -3,17 +3,19 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
 import { Redirect } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Spinner } from 'react-bootstrap';
 import PersonIcon from '@material-ui/icons/Person';
 import LockIcon from '@material-ui/icons/Lock';
 import Avatar from '@material-ui/core/Avatar';
 function Login() {
+  const [loading, setLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
   const { username, password } = formData;
+
   const changeHandler = (e) => {
     setFormData({
       ...formData,
@@ -30,9 +32,11 @@ function Login() {
     await axios
       .post('https://studygram-dev.herokuapp.com/api/user/auth', data)
       .then((response) => {
+        setLoading(true);
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('fname', response.data.firstname);
         localStorage.setItem('lname', response.data.lastname);
+        localStorage.setItem('id', response.data.id);
         setIsLoggedIn(true);
       })
       .catch((error) => alert('Invalid Credentials'));
@@ -46,7 +50,7 @@ function Login() {
       {/* <Navigation /> */}
       <div className="login">
         <Form onSubmit={(e) => loginHandler(e)}>
-          <Avatar  className="login_avatar" />
+          <Avatar className="login_avatar" />
           <h2>Student Login </h2>
           <Form.Group controlId="formBasicEmail" className="login_email">
             <PersonIcon className="login_icon" />
@@ -67,11 +71,14 @@ function Login() {
               onChange={(e) => changeHandler(e)}
             />
           </Form.Group>
-          <Button variant="link" type="submit" onClick={(e) => loginHandler(e)}>
+          <Button variant="link" type="submit" onClick={(e) => loginHandler(e)} disabled={loading}>
+            {loading && (
+              <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+            )}{' '}
             Login
           </Button>
           <p>
-            Not on StudyGram yet? {' '} <Link to="/signup"> Sign up</Link>
+            Not on StudyGram yet? <Link to="/signup"> Sign up</Link>
           </p>
         </Form>
       </div>

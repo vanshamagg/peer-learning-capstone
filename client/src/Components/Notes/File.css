@@ -4,19 +4,20 @@
   font-size: 1rem;
   /* margin: 1rem; */
   /* height: 600px; */
-  box-shadow: 1px 1px 2px var(--secondary);
+  box-shadow: 3px 3px 3px var(--primary);
   background-color: var(--primary);
   color: var(--secondary);
   font-family: 'Montserrat', sans-serif;
   border-radius: 10px;
   /* margin:10px; */
 }
-/* .file h4 {
-  text-decoration: underline;
-} */
+
 .file h4 {
   text-transform: capitalize;
   font-weight: 700;
+}
+.file .card-header {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.849);
 }
 .file blockquote > p {
   text-align: right;
@@ -24,52 +25,75 @@
   color: var(--secondary);
   font-style: italic;
   font-weight: 200;
+  margin-bottom: 0;
 }
 .card-footer {
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  padding:12px 15px;
+  padding: 12px 15px;
   flex-wrap: nowrap;
+  border-top: 1px solid rgba(128, 128, 128, 0.849);
 }
 .file a {
   color: var(--primary);
   font-weight: 700;
 }
-.file_top{
+.file_top {
   display: flex;
   justify-content: space-between;
   /* align-items: center; */
 }
 .card-footer > button {
   outline: none;
-  margin:6px;
+  margin: 6px;
   /* width: 60px; */
   height: 40px;
   border: var(--primary);
   color: var(--primary);
   background-color: var(--secondary);
   border-radius: 5px;
-  padding:10px;
-font-weight: 800;
+  padding: 6px;
+  font-weight: 800;
 }
 
 .card-footer > button:hover,
 .card-footer > button:focus,
 .card-footer > button:active {
+
   color: var(--primary) !important;
   background-color: var(--secondary) !important;
   border: none !important;
   outline: none !important;
   border-radius: none !important;
-  border-style: outset!important;
+  
 }
 .card-footer a {
   text-decoration: none;
 }
-@media only screen and (max-width: 900px) {
-.file{
-  flex:0 0 80%;
+
+.card-body {
+  padding: 10px !important;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
+.category {
+  display: flex;
+  /* align-items:center; */
+  /* justify-content: space-around; */
+}
+.category h6 {
+  border: 1px solid gray;
+  padding: 6px;
+  margin: 5px;
+  margin-bottom: 4px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px gray;
+}
+@media only screen and (max-width: 900px) {
+  .file {
+    flex: 0 0 80%;
+  }
 }

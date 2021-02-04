@@ -6,7 +6,7 @@
   align-items: center;
   width: 100vw;
   overflow: hidden !important;
-  height: 85vh;
+  height:90vh;
 }
 /* .body a {
   display: block;
@@ -18,8 +18,9 @@
 } */
 .body_notes,
 .body_discussion {
-  height: 85vh;
+  height:90vh;
   cursor: pointer;
+
   /* overflow-y: hidden; */
   background-color: var(--primary);
   color: var(--secondary);

@@ -1,0 +1,93 @@
+.user {
+  background-color: var(--secondary);
+  height: 90vh;
+  /* overflow: hidden !important; */
+  margin-top: 30px;
+  margin-bottom: 20px;
+
+  /* color: var(--secondary); */
+}
+
+.user h3 {
+  text-transform: capitalize;
+  text-align: center;
+}
+.user_left {
+  background-image: url(https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80);
+  color: var(--secondary);
+  /* height: 500px; */
+  /* height: 100%; */
+  color: var(--secondary);
+  /* object-fit: contain; */
+  display: flex;
+  flex-direction: column;
+  text-transform: capitalize;
+  /* flex-wrap: nowrap; */
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  width: 100%!important;
+}
+.user_left_icon {
+  background-color: var(--secondary) !important;
+  color: var(--primary) !important;
+  width: 100px !important;
+  height: 100px !important;
+  font-size: 3rem !important;
+  margin-bottom: 20px;
+}
+.user_right {
+  padding: 1rem;
+}
+hr {
+  background-color: var(--primary) !important;
+  margin: 2px !important;
+}
+.user .btn {
+  border-color: var(--primary) !important;
+  /* width: 90px; */
+  background-color: var(--secondary) !important;
+  color: var(--primary) !important;
+  text-decoration: none !important;
+  /* font-weight: 600!important; */
+  margin-bottom: 12px;
+}
+.user .btn:hover,
+.user .btn:focus,
+.user .btn:active {
+
+  outline: none !important;
+  color: var(--primary) !important;
+ 
+  box-shadow: none !important;
+}
+.user .btn a {
+  text-decoration: none !important;
+  color: var(--primary) !important;
+}
+.user_card {
+  box-shadow: 5px 2px 8px var(--primary);
+  width:90%;
+  margin-left:5%;
+}
+span {
+  text-transform: capitalize;
+  color: var(--primary);
+  font-weight: 600;
+  text-align: justify;
+}
+.user .user_right p {
+  color: var(--primary) !important;
+  /* padding:5px; */
+  margin: 8px;
+  font-weight: 400;
+}
+.user h5 {
+  color: red;
+  font: weight 800;
+  margin-bottom: 2px;
+}
+.user p:nth-child(2) {
+  color: var(--primary);
+  font-weight: 600;
+}

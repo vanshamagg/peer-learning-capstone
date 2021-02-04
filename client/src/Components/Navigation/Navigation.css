@@ -1,5 +1,5 @@
 .navigation {
-  height: 60px;
+  height: 10vh;
   width: 100%;
   /* padding:16px; */
   background-color: var(--secondary);
@@ -19,6 +19,7 @@
   background-color: var(--primary) !important;
   color: var(--secondary) !important;
   margin-right: 1rem !important;
+  cursor: pointer!important;
 }
 .navigation img {
   height: 40px;

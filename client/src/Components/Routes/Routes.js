@@ -6,6 +6,7 @@ import Notes from '../Notes/Notes.js';
 import Login from '../Login/Login.js';
 import SignUp from '../SignUp/SignUp.js';
 import Navigation from '..//Navigation/Navigation.js';
+import User from '..//Navigation/User/User';
 import PrivateRoute from './PrivateRoute.js';
 import PublicRoute from './PublicRoute.js';
 
@@ -21,6 +22,7 @@ const Routes = withRouter(({ location }) => {
         <PublicRoute restricted={true} component={SignUp} path="/signup" exact />
         <PrivateRoute component={Wrapper} path="/wrapper" exact />
         <PrivateRoute component={Notes} path="/wrapper/notes" exact />
+        <PrivateRoute component={User} path="/wrapper/:id" exact />
       </Switch>
     </div>
   );

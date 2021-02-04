@@ -21,6 +21,7 @@
     "pdfjs-dist": "^2.4.456",
     "react": "^16.13.1",
     "react-bootstrap": "^1.4.3",
+    "react-copy-to-clipboard": "^5.0.3",
     "react-dom": "^16.13.1",
     "react-download-link": "^2.3.0",
     "react-pdf": "^5.1.0",

@@ -1,5 +1,5 @@
-import React, { useState} from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
 import './Navigation.css';
 import { LinkContainer } from 'react-router-bootstrap';
 import Avatar from '@material-ui/core/Avatar';
@@ -12,7 +12,7 @@ function Navigation() {
   const name = `${fname} ${lname}`;
   const [loggedOut, setLoggedOut] = useState(false);
   console.log(name);
-
+  const history = useHistory();
   const getInitials = (name, delimeter) => {
     if (name) {
       const array = name.split(delimeter);
@@ -35,13 +35,19 @@ function Navigation() {
   if (loggedOut) {
     return <Redirect to="/" />;
   }
+
+  const id = localStorage.getItem('id');
+ 
+  const UserHandler = () => {
+    history.push(`/wrapper/${id}`);
+  };
   return (
     <>
       {!localStorage.token ? (
         <Navbar className="navigation">
           <LinkContainer to="/wrapper">
             <Navbar.Brand>
-              <img src={logo} alt="StudyGram"/>
+              <img src={logo} alt="StudyGram" />
             </Navbar.Brand>
           </LinkContainer>
         </Navbar>
@@ -49,11 +55,13 @@ function Navigation() {
         <Navbar className="navigation">
           <LinkContainer to="/wrapper">
             <Navbar.Brand>
-              <img src={logo} alt="StudyGram"/>
+              <img src={logo} alt="StudyGram" />
             </Navbar.Brand>
           </LinkContainer>
           <Nav className="ml-auto">
-            <Avatar className="navigation_userIcon">{getInitials(name, ' ')}</Avatar>
+            <Avatar className="navigation_userIcon" onClick={UserHandler} >
+              {getInitials(name, ' ')}
+            </Avatar>
 
             <Button onClick={HandleLogout}>
               Logout <ExitToAppIcon />
