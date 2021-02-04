@@ -67,7 +67,7 @@ async function getEverything(req, res) {
         {
           model: Category,
           as: 'Categories',
-          attributes: ['name', 'description'],
+          attributes: ['name'],
           through: {
             attributes: [],
           },
@@ -295,8 +295,14 @@ async function categoryWise(req, res) {
 
     if (!list) throw new Error(`No category exists by the name of ${query}`);
 
+    const resources = list['Resources'];
+    // fetching file information from the cloud for each file
+    for  (let i = 0; i < resources.length; i++) {
+      resources[i]['dataValues']['file'] = await googleDrive.getDetails(resources[i]['publicid']);
+    }
     res.json(list);
   } catch (error) {
+    console.log(error)
     res.status(400).json({ error: error.message || error });
   }
 }
@@ -306,7 +312,7 @@ async function categoryWise(req, res) {
  */
 async function allCategories(req, res) {
   try {
-    const list = await Category.findAll();
+    const list = await Category.findAll({});
     res.json(list);
   } catch (error) {
     res.status(500).json({ error: error.message || error });
@@ -317,7 +323,7 @@ const controllers = {};
 controllers.create = create;
 controllers.addCategory = addCategory;
 controllers.getSingle = getSingle;
-controllers.allCategories = allCategories
+controllers.allCategories = allCategories;
 controllers.getEverything = getEverything;
 controllers.deleteResource = deleteResource;
 controllers.removeCategory = removeCategory;
