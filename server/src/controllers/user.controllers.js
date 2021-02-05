@@ -5,8 +5,10 @@
 import 'dotenv/config';
 import { User, Resource, Like, Groups } from '../models';
 import bcrypt from 'bcryptjs';
-
-// CREATE A USER
+import { sendWelcomeEmail } from '../services/email'
+/**
+ *  creates a new user from the database
+ */
 async function create(req, res) {
   try {
     let {
@@ -28,7 +30,7 @@ async function create(req, res) {
     const salt = await bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS));
     password = await bcrypt.hash(password, salt);
 
-    await User.create({
+    const user = await User.create({
       firstname,
       lastname,
       username,
@@ -43,7 +45,13 @@ async function create(req, res) {
       country,
       dob,
     });
+
+    
+
     res.status(200).json({ messge: 'User has been created successfully' });
+
+    // sending a welcome message to the user
+    await sendWelcomeEmail(user);
   } catch (error) {
     console.log(error.parent.message);
     res.status(400).json({
@@ -226,7 +234,7 @@ async function destroy(req, res) {
     // destroy the user from db
     await user.destroy();
 
-    res.json({ message: `user ${user.firstname} ${user.lastname} has been removed from the database`})
+    res.json({ message: `user ${user.firstname} ${user.lastname} has been removed from the database` })
   } catch (error) {
     res.status(400).json({ error: error.message || error })
   }

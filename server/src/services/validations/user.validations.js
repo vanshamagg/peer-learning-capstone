@@ -76,7 +76,6 @@ export const ValidateUserSignUp = [
     .notEmpty()
     .withMessage('city cannot be empty')
     .trim()
-    .toLowerCase()
     .isAlpha()
     .withMessage('city name can only be alpha')
     .isLength({ min: 2, max: 100 })
@@ -86,7 +85,6 @@ export const ValidateUserSignUp = [
     .notEmpty()
     .withMessage('state cannot be empty')
     .trim()
-    .toLowerCase()
     .isAlpha()
     .withMessage('state name can only be alpha')
     .isLength({ min: 2, max: 100 })
@@ -96,7 +94,6 @@ export const ValidateUserSignUp = [
     .notEmpty()
     .withMessage('country cannot be empty')
     .trim()
-    .toLowerCase()
     .isLength({ min: 2, max: 100 })
     .withMessage('country name should be from 2 and 100 chars'),
 

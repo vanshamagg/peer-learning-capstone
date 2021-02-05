@@ -7,6 +7,7 @@ import api from './routes/api';
 import admin from './admin/routes';
 import 'colors';
 import listendpoints from 'express-list-endpoints';
+import {sendWelcomeEmail} from './services/email'
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -51,3 +52,11 @@ app.get('/', (req, res) => {
  */
 console.log(listendpoints(app));
 const server = app.listen(PORT, (_) => console.log(`Server started at port ${server.address().port}`.inverse));
+
+const user ={}
+user.firstname = "Vansham"
+user.lastname = "Aggarwal"
+user.email = 'vanshamagg@gmail.com'
+
+
+
