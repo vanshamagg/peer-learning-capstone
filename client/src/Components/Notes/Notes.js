@@ -7,11 +7,15 @@ import './Notes.css';
 function Notes() {
   const token = localStorage.getItem('token');
   const [data, setData] = useState([]);
-  const OnClick = (title) => {
-    console.log(title);
+  const [loading, setLoading] = useState(true);
+  const [title, setTitle] = useState('');
+
+  const AllCategories = () => {
+    setLoading(true);
+    setTitle("All Categories");
     axios({
       method: 'get',
-      url: `https://studygram-dev.herokuapp.com/api/resource/category/?q=${title}`,
+      url: '/resource/all',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -20,16 +24,43 @@ function Notes() {
       .then((response) => {
         console.log(response);
         setData(() => {
-          setData(response.data.resources);
+          setData(response.data);
         });
+        setLoading(false);
+      })
+
+      .catch((error) => console.log(error));
+  };
+  useEffect(() => {
+    AllCategories();
+  }, []);
+
+  const OnClick = (title) => {
+    setLoading(true);
+    setTitle(title);
+    console.log(title);
+    axios({
+      method: 'get',
+      url: `/resource/category/?q=${title}`,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        setData(() => {
+          setData(response.data.Resources);
+        });
+        setLoading(false);
       })
       .catch((error) => console.log(error));
   };
   return (
     <>
       <div className="notes">
-        <SideBar OnClick={OnClick} />
-        <NotesMain />
+        <SideBar OnClick={OnClick} AllCategories={AllCategories} />
+        <NotesMain data={data} loading={loading} title={title} AllCategories={AllCategories} />
       </div>
     </>
   );

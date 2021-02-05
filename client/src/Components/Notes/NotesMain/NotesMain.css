@@ -5,21 +5,36 @@
   align-items: center;
   /* padding: 2rem; */
   color: var(--primary);
-  width:80%;
+  width: 80%!important;
+}
+.nofile {
+  background-color: var(--primary);
+  color: var(--secondary);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 7px var(--primary);
+  margin-top: 10px;
 }
 
+.notes_main h4 {
+  color: red;
+  border: 2px solid var(--primary);
+  border-radius: 5px;
+  padding: 4px;
+}
 .notes_main_grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  /* align-items: center; */
+  justify-content:space-evenly;  
 }
 .notes_main > button,
 .notes_main > button .MuiSvgIcon-root {
-  margin: auto;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   /* width: 10%; */
-  padding: 1rem;
+  padding: .3rem;
   padding-bottom: 0;
   background-color: var(--secondary);
   outline: none;

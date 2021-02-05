@@ -46,7 +46,7 @@ function User() {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `https://studygram-dev.herokuapp.com/api/user/${id}`,
+      url: `/user/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

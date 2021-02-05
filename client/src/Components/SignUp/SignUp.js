@@ -3,12 +3,13 @@ import AlertDismissible from './AlertDismissible';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './SignUp.css';
-import { Form, Button, Col } from 'react-bootstrap';
+import { Form, Button, Col, InputGroup } from 'react-bootstrap';
 
 function SignUp() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [countryapi, setCountryapi] = useState([]);
   const [stateapi, setStateapi] = useState([]);
+  const [phonecode, setPhonecode] = useState('');
   const [cityapi, setCityapi] = useState([]);
   const [show, setShow] = useState(true);
   const [formData, setFormData] = useState({
@@ -58,6 +59,7 @@ function SignUp() {
           'X-CSCAPI-KEY': 'b0NzelBwR204aDZmeWR0cEk4RzFscWlacjJMZUxMN1lhcEdUMFEydw==',
         },
       }).then((response) => {
+        console.log(response.data);
         setCountryapi(response.data);
       });
     } catch (err) {
@@ -98,6 +100,23 @@ function SignUp() {
       console.log(err);
     }
   };
+  // Phone HANDLER
+  const phoneHandler = async (st) => {
+    try {
+      axios({
+        method: 'get',
+        url: `https://api.countrystatecity.in/v1/countries/${st}`,
+        headers: {
+          'X-CSCAPI-KEY': 'b0NzelBwR204aDZmeWR0cEk4RzFscWlacjJMZUxMN1lhcEdUMFEydw==',
+        },
+      }).then((response) => {
+        console.log(response.data);
+        setPhonecode(response.data.phonecode);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     countryHandler();
@@ -107,6 +126,7 @@ function SignUp() {
 
   useEffect(() => {
     stateHandler(st);
+    phoneHandler(st);
   }, [country]);
   useEffect(() => {
     cityHandler(st, ct);
@@ -135,7 +155,7 @@ function SignUp() {
       insti_name: insti_name,
       insti_type: insti_type,
       gender: gender,
-      mobile: mobile,
+      mobile: '+'+phonecode+mobile,
       country: country,
       city: city,
       state: state,
@@ -144,7 +164,7 @@ function SignUp() {
     console.log(data);
     // }
     await axios
-      .post('https://studygram-dev.herokuapp.com/api/user', data)
+      .post('/user', data)
       .then((response) => {
         console.log(response);
 
@@ -270,7 +290,6 @@ function SignUp() {
                   placeholder="Institue Type"
                   className="select"
                   name="insti_type"
-                  value={insti_type}
                   onChange={onChange}
                 >
                   <option value="school">School</option>
@@ -311,30 +330,7 @@ function SignUp() {
               </Form.Group>
             </Col>
           </Form.Row>
-          <Form.Row>
-            <Col>
-              <Form.Group>
-                <Form.Control
-                  type="text"
-                  placeholder="Mobile"
-                  name="mobile"
-                  value={mobile}
-                  onChange={onChange}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group>
-                <Form.Control
-                  type="date"
-                  name="dob"
-                  placeholder="Date of Birth"
-                  value={dob}
-                  onChange={onChange}
-                />
-              </Form.Group>
-            </Col>
-          </Form.Row>
+
           <Form.Group>
             <Form.Control
               as="select"
@@ -386,6 +382,35 @@ function SignUp() {
                     <option key={city.id}>{city.name}</option>
                   ))}
                 </Form.Control>
+              </Form.Group>
+            </Col>
+          </Form.Row>
+          <Form.Row>
+            <Col>
+              <Form.Group>
+            
+                  {/* <InputGroup.Prepend>
+                    <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+                  </InputGroup.Prepend> */}
+                  <Form.Control
+                    type="text"
+                    placeholder="Mobile"
+                    name="mobile"
+                    value={mobile}
+                    onChange={onChange}
+                  />
+            
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group>
+                <Form.Control
+                  type="date"
+                  name="dob"
+                  placeholder="Date of Birth"
+                  value={dob}
+                  onChange={onChange}
+                />
               </Form.Group>
             </Col>
           </Form.Row>

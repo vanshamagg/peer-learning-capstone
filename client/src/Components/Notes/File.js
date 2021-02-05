@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 // import {Link} from 'react-router-dom'
-import { Card, Overlay, Tooltip } from 'react-bootstrap';
+import { Card, Overlay, Tooltip, Form, Button, Row, Col } from 'react-bootstrap';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
@@ -18,27 +19,27 @@ function File({ file, id, category }) {
   const token = localStorage.getItem('token');
   const [like, setLike] = useState(null);
 
-  console.log(category, file);
+  // console.log(category, file);
   const addLike = async (id) => {
     axios({
       method: 'post',
-      url: `https://studygram-dev.herokuapp.com/api/resource/${id}/like`,
+      url: `/resource/${id}/like`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         return axios({
           method: 'get',
-          url: `https://studygram-dev.herokuapp.com/api/resource/${id}`,
+          url: `/resource/${id}`,
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
       })
       .then((response) => {
-        console.log('Response', response);
+        // console.log('Response', response);
         setLike(response.data.likeCount);
         // const button = e.target.style.Color;
         // const newbutton = e.target.style.Color;
@@ -75,15 +76,15 @@ function File({ file, id, category }) {
       <Card.Header>
         <div className="file_top">
           <h4> {file.title} </h4>
-          <CopyToClipboard text={value} onCopy={() => setCopied(true)}>
-            <ShareIcon
-              ref={target}
-              onClick={() => {
-               
-                setShow(!show);
-              }}
-            />
-          </CopyToClipboard>
+
+          <ShareIcon
+            ref={target}
+            onClick={() => {
+              setShow(!show);
+              setCopied(false);
+              setValue(file.file.webViewLink);
+            }}
+          />
         </div>
 
         <blockquote className="blockquote mb-0 mr-0">
@@ -98,11 +99,7 @@ function File({ file, id, category }) {
           {' '}
           <h5>Description:</h5> <p>{file.file.description}</p>
         </div>
-        <div className="category">
-          {category.map((x) => (
-            <h6> {x.name} </h6>
-          ))}
-        </div>
+        <div className="category">{category && category.map((x) => <h6> {x.name} </h6>)}</div>
       </Card.Body>
 
       <Card.Footer className="card-footer">
@@ -137,21 +134,30 @@ function File({ file, id, category }) {
           </a>
         </button>
       </Card.Footer>
-      <Overlay target={target.current} show={show} placement="right">
+
+      <Overlay target={target.current} show={show} placement="top">
         {(props) => (
           <Tooltip id="overlay-example" {...props}>
-            <input
-              value={file.file.webViewLink}
-              
-            />
-            <br />
-            <br />
-        
-            <CopyToClipboard text={value} onCopy={() => setCopied(true)}>
-              <button>Copy to clipboard with button</button>
-            </CopyToClipboard>
-        
-            {copied ? <span style={{ color: 'red' }}>Copied.</span> : null}
+           
+              <div className="copy-form">
+                <input type="text" value={value} />
+                <CopyToClipboard
+                  text={value}
+                  onCopy={() => {
+                    setCopied(true);
+                    console.log(value);
+                  
+                  }}
+                >
+                  <button>
+                    <FileCopyIcon />
+                  </button>
+                </CopyToClipboard>
+            
+
+             
+            </div>
+            {copied ? <span style={{ color: 'white' }}>Copied.</span> : null}
           </Tooltip>
         )}
       </Overlay>

@@ -1,5 +1,5 @@
 .file {
-  flex: 0 0 42%;
+  flex: 0 0 45%;
   margin: 10px;
   font-size: 1rem;
   /* margin: 1rem; */
@@ -9,11 +9,44 @@
   color: var(--secondary);
   font-family: 'Montserrat', sans-serif;
   border-radius: 10px;
+  cursor: pointer;
   /* margin:10px; */
 }
+.tooltip-inner {
+  background-color: var(--primary);
+  padding: 6px;
+  max-width: 260px;
+}
+.copy-form {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  border-radius: 3px;
+  margin-bottom: 9px;
+  background-color: var(--primary);
+  color: var(--primary);
+}
+.copy-form input {
+  flex: 0 0 80% !important;
+  width: 80%;
+  /* background-color: gray; */
+  padding: 3px;
+  border: none;
+  font-weight: 700;
+  color:var(--primary);
 
+  /* opacity: 0.5;   */
+  /* color:var(--secondary); */
+}
+.copy-form button {
+  flex: 0 0 20%;
+  border: none;
+  background-color: var(--secondary);
+  color: var(--primary);
+  padding: 3px;
+}
 .file h4 {
   text-transform: capitalize;
+  color: var(--secondary) !important;
   font-weight: 700;
 }
 .file .card-header {
@@ -61,13 +94,11 @@
 .card-footer > button:hover,
 .card-footer > button:focus,
 .card-footer > button:active {
-
   color: var(--primary) !important;
   background-color: var(--secondary) !important;
   border: none !important;
   outline: none !important;
   border-radius: none !important;
-  
 }
 .card-footer a {
   text-decoration: none;

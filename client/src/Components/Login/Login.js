@@ -30,7 +30,7 @@ function Login() {
     };
     console.log(data);
     await axios
-      .post('https://studygram-dev.herokuapp.com/api/user/auth', data)
+      .post('/user/auth', data)
       .then((response) => {
         setLoading(true);
         localStorage.setItem('token', response.data.token);
