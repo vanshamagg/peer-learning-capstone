@@ -4,7 +4,8 @@
 
 import { Router } from 'express';
 import bodyParser from 'body-parser';
-import category from './category.admin.route'
+import category from './category.admin.route';
+import user from './user.admin.route';
 const router = Router();
 
 /**
@@ -21,6 +22,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
  * ======================================
  */
 router.use('/category', category)
+router.use('/user', user)
 /**
  * ======================================
  *              ENDPOINTS

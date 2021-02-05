@@ -55,9 +55,9 @@ async function create(req, res) {
 // GET USER DETAILS USING JWT
 async function get(req, res) {
   try {
-    const username = req.user.username;
+    const id = req.user.id;
     const user = await User.findOne({
-      where: { username },
+      where: { id },
       attributes: {
         exclude: ['password'],
       },
@@ -69,34 +69,56 @@ async function get(req, res) {
   }
 }
 
-// UPDATE DETAILS EXCEPT username, email, password,
+/**
+ *  update user's every detail except email,username and password
+ */
 async function update(req, res) {
   try {
-    const { firstname, lastname } = req.body;
-    if (!req.body) throw new Error('Request body is empty');
+    const id = req.user.id;
 
-    const user = await User.findOne({ where: { username: req.user.username } });
-    if (!user) throw new Error(`User with username ${username} not found.`);
+    // destructure the details
+    const {
+      firstname,
+      middlename,
+      lastname,
+      insti_name,
+      insti_type,
+      gender,
+      mobile,
+      country,
+      city,
+      state,
+      dob,
+    } = req.body;
 
-    await User.update(
+    // update user
+    const user = await User.update(
       {
         firstname,
+        middlename,
         lastname,
+        insti_type,
+        insti_name,
+        gender,
+        mobile,
+        country,
+        city,
+        state,
+        dob,
       },
       {
-        where: {
-          username: req.user.username,
-        },
+        where: { id },
       },
     );
-
-    res.send({ message: 'user updated except username, email, password' });
+    res.send({ message: `details of the user ${id} have been updated.` });
   } catch (error) {
     res.status(400).json({ error: error.message || error });
   }
 }
 
-// GET ONLY USER's RESOURCES
+/**
+ *  get only logged in user's resources
+ */
 async function getResources(req, res) {
   try {
     const list = await Resource.findAll({
@@ -190,11 +212,30 @@ async function getUser(req, res) {
     res.status(400).json({ error: error.message || error });
   }
 }
+/**
+ * deletes the current logged in
+ * user permanantly
+ */
+async function destroy(req, res) {
+  try {
+    const id = req.user.id;
 
+    // get the user
+    const user = await User.findByPk(id);
+
+    // destroy the user from db
+    await user.destroy();
+
+    res.json({ message: `user ${user.firstname} ${user.lastname} has been removed from the database`})
+  } catch (error) {
+    res.status(400).json({ error: error.message || error })
+  }
+}
 const controllers = {};
 controllers.create = create;
 controllers.get = get;
 controllers.getUser = getUser;
 controllers.update = update;
 controllers.getResources = getResources;
+controllers.destroy = destroy;
 export default controllers;

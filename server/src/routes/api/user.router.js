@@ -10,8 +10,7 @@ import { Router } from 'express';
 import controllers from '../../controllers/user.controllers';
 import authRouter from './auth.router';
 import jwt from '../../services/jwt';
-import { validateSignup, validateUserUpdate, isRequestValidated } from '../../services/validator';
-import {  ValidateUserSignUp } from '../../services/validations/user.validations';
+import {  ValidateUserSignUp, ValidateUserUpdate } from '../../services/validations/user.validations';
 const router = Router();
 
 /**
@@ -31,6 +30,8 @@ router.use('/auth', authRouter);
 router.post('/', ValidateUserSignUp, controllers.create);
 router.get('/', jwt, controllers.get);
 router.get('/:query', jwt, controllers.getUser)
-router.put('/', jwt, validateUserUpdate, isRequestValidated, controllers.update);
+router.put('/', jwt, ValidateUserUpdate, controllers.update);
 router.get('/resource', jwt, controllers.getResources);
+router.delete('/', jwt, controllers.destroy);
+
 export default router;
