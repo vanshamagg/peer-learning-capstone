@@ -56,9 +56,8 @@ export const ValidateUserSignUp = [
   body('insti_type')
     .trim()
     .isAlpha()
-    .withMessage('type of instituition must be a string')
-    .isIn(['school', 'college', 'university', 'uni', 'other'])
-    .withMessage('type of of instituion must be any one of 5 values - school, college, university, uni, other'),
+    .withMessage('type of instituition must be a string'),
+ 
 
   body('gender')
     .notEmpty()
@@ -76,8 +75,6 @@ export const ValidateUserSignUp = [
     .notEmpty()
     .withMessage('city cannot be empty')
     .trim()
-    .isAlpha()
-    .withMessage('city name can only be alpha')
     .isLength({ min: 2, max: 100 })
     .withMessage('city name should be from 2 and 100 chars'),
 
@@ -85,8 +82,6 @@ export const ValidateUserSignUp = [
     .notEmpty()
     .withMessage('state cannot be empty')
     .trim()
-    .isAlpha()
-    .withMessage('state name can only be alpha')
     .isLength({ min: 2, max: 100 })
     .withMessage('state name should be from 2 and 100 chars'),
 
