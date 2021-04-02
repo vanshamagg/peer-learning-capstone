@@ -1,0 +1,1473 @@
+{
+	"info": {
+		"_postman_id": "df432056-bc40-441b-ae79-90a0c9eea5dd",
+		"name": "Studygram",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "http://localhost:8081/api/user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6InZhbnNoYW1hZ2dAZ21haWwuY29tIiwiaWF0IjoxNjExMDY1MzUzLCJleHAiOjE2MTEwNjg5NTN9.x2PgFreT7O9ayZ8wckJak0yKJf9VX4GuvdPcKagydQs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstname",
+									"value": "vansham",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "aggarwal",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "vanshamagg@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "vanshamagg",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "none",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/user/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6ImFsemFiaWxsYTA5QGdtYWlsLmNvbSIsImlkIjo1LCJpYXQiOjE2MTI0NjM1MjcsImV4cCI6MTYxMzA2ODMyN30.610AQG-SEX72w2FWI2wRySS_qYjW0Sx8G0VgB_SP7Sc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstname",
+									"value": "manavdeep",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "singh",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "manav@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "manavb",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "none",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/user/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6ImFsemFiaWxsYTA5QGdtYWlsLmNvbSIsImlkIjo1LCJpYXQiOjE2MTI0NjM1MjcsImV4cCI6MTYxMzA2ODMyN30.610AQG-SEX72w2FWI2wRySS_qYjW0Sx8G0VgB_SP7Sc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstname",
+									"value": "Vansham",
+									"type": "text"
+								},
+								{
+									"key": "middlename",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "Agg",
+									"type": "text"
+								},
+								{
+									"key": "insti_name",
+									"value": "HHPS",
+									"type": "text"
+								},
+								{
+									"key": "insti_type",
+									"value": "college",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"type": "text"
+								},
+								{
+									"key": "mobile",
+									"value": "+918562356897",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "USA",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "Jammu",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "Jammu and Kashmir",
+									"type": "text"
+								},
+								{
+									"key": "dob",
+									"value": "1996-11-01",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/user/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6InZhbnNoYW1hZ2dAZ21haWwuY29tIiwiaWF0IjoxNjExMDY1MzUzLCJleHAiOjE2MTEwNjg5NTN9.x2PgFreT7O9ayZ8wckJak0yKJf9VX4GuvdPcKagydQs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstname",
+									"value": "Vansham",
+									"type": "text"
+								},
+								{
+									"key": "middlename",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "lastname",
+									"value": "Aggarwal",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "vanshamagg",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "none96",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "vanshamagg@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "insti_name",
+									"value": "SOAL",
+									"type": "text"
+								},
+								{
+									"key": "insti_type",
+									"value": "school",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"type": "text"
+								},
+								{
+									"key": "mobile",
+									"value": "+918146648549",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "India",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "Amritsar",
+									"type": "text"
+								},
+								{
+									"key": "state",
+									"value": "Punjab",
+									"type": "text"
+								},
+								{
+									"key": "dob",
+									"value": "1996-11-09",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/user/5",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6ImFsemFiaWxsYTA5QGdtYWlsLmNvbSIsImlkIjo1LCJpYXQiOjE2MTIyODM1NDcsImV4cCI6MTYxMjg4ODM0N30.ZYJhnR4501yGTaXHTkuQLzvrvqDsadYhE59skx74i2c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/user/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"user",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/user/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6ImFsemFiaWxsYTA5QGdtYWlsLmNvbSIsImlkIjo1LCJpYXQiOjE2MTI0NjM1MjcsImV4cCI6MTYxMzA2ODMyN30.610AQG-SEX72w2FWI2wRySS_qYjW0Sx8G0VgB_SP7Sc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"user",
+								""
+							]
+						},
+						"description": "removes the current logged in user from the database and all his associations."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "http://localhost:8081/api/user/auth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "vanshamagg",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "none96",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/user/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"user",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/user/auth/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6InZhbnNoYW1hZ2dAZ21haWwuY29tIiwiaWF0IjoxNjEwOTk2NjA2LCJleHAiOjE2MTA5OTY2NjZ9.UB7KtnA7HnGi9GwI2Jjt3FPfnkllkNxMflhAfgZNKKk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6InZhbnNoYW1hZ2dAZ21haWwuY29tIiwiaWF0IjoxNjEwOTk2Mjg0LCJleHAiOjE2MTA5OTk4ODR9.glG1iA4lHXYnpxTW7RtP383X5WNAuQ7p5HPk871uvQs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/api/user/auth/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"user",
+								"auth",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "resource",
+			"item": [
+				{
+					"name": "http://localhost:8081/api/resource",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6ImFsemFiaWxsYTA5QGdtYWlsLmNvbSIsImlkIjo1LCJpYXQiOjE2MTE1MTU2MjYsImV4cCI6MTYxMjEyMDQyNn0.BHejLcGJw3OO_PS2nquZ1ZQ-rqERUDtYZ4ScxMHGwEE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "asset",
+									"contentType": "multipart/form-data",
+									"type": "file",
+									"src": "/home/vansham/Desktop/Data Structures and Algorithms with JavaScript ( PDFDrive ).pdf"
+								},
+								{
+									"key": "description",
+									"value": "Data Structures and AlgorithsmData Structures and AlgorithsmData Structures and AlgorithsmData Structures and AlgorithsmData Structures and AlgorithsmData Structures and AlgorithsmData Structures and AlgorithsmData Structures and AlgorithsmData Structures and AlgorithsmData Structures and Algorithsm",
+									"contentType": "multipart/form-data",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Data Structures and Algorithsm",
+									"contentType": "multipart/form-data",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "some mofo",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "some other mofo",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/resource",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"resource"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/resource/all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6ImFsemFiaWxsYTA5QGdtYWlsLmNvbSIsImlkIjo1LCJpYXQiOjE2MTIyODM1NDcsImV4cCI6MTYxMjg4ODM0N30.ZYJhnR4501yGTaXHTkuQLzvrvqDsadYhE59skx74i2c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/resource//all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"resource",
+								"",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/resource/142",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6ImFsemFiaWxsYTA5QGdtYWlsLmNvbSIsImlkIjo1LCJpYXQiOjE2MTE1MTU2MjYsImV4cCI6MTYxMjEyMDQyNn0.BHejLcGJw3OO_PS2nquZ1ZQ-rqERUDtYZ4ScxMHGwEE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://studygram-dev.herokuapp.com/api/resource/73",
+							"protocol": "https",
+							"host": [
+								"studygram-dev",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"resource",
+								"73"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/resource/1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6ImFsemFiaWxsYTA5QGdtYWlsLmNvbSIsImlkIjo1LCJpYXQiOjE2MTIyODM1NDcsImV4cCI6MTYxMjg4ODM0N30.ZYJhnR4501yGTaXHTkuQLzvrvqDsadYhE59skx74i2c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/resource/68",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"resource",
+								"68"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/resource/1/like",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6ImFsemFiaWxsYTA5QGdtYWlsLmNvbSIsImlkIjo1LCJpYXQiOjE2MTIyODM1NDcsImV4cCI6MTYxMjg4ODM0N30.ZYJhnR4501yGTaXHTkuQLzvrvqDsadYhE59skx74i2c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/resource/68/like",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"resource",
+								"68",
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/resource/73/category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6InZhbnNoYW1hZ2dAZ21haWwuY29tIiwiaWQiOjM1LCJpYXQiOjE2MTI3ODY4MDksImV4cCI6MTYxMzM5MTYwOX0.EJGd6feBm4m-ZqSd6s575LXkipE13Qz24N8YseYJbzs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "category",
+									"value": "Physics",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/resource/118/category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"resource",
+								"118",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/resource/73/category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vdW5pa2E1IiwiZW1haWwiOiJ2YW5zaGFtYWdnQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2MTE4NjUwMTYsImV4cCI6MTYxMjQ2OTgxNn0.yvsd-WGdREPNy9O439OZoBxGk_zR3hbiMudbrBaOVUw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "category",
+									"value": "Biology",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/resource/73/category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"resource",
+								"73",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/resource/category/?q=Computer Science",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6ImFsemFiaWxsYTA5QGdtYWlsLmNvbSIsImlkIjo1LCJpYXQiOjE2MTIyODM1NDcsImV4cCI6MTYxMjg4ODM0N30.ZYJhnR4501yGTaXHTkuQLzvrvqDsadYhE59skx74i2c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/resource/category/?q=Physics",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"resource",
+								"category",
+								""
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "Physics"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/resource/categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6ImFsemFiaWxsYTA5QGdtYWlsLmNvbSIsImlkIjo1LCJpYXQiOjE2MTIzNjI2NjUsImV4cCI6MTYxMjk2NzQ2NX0.00fTn9OGk_pGrRHrp6svuvfbYJron-G3M0alyHNupl0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/resource/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"resource",
+								"categories"
+							]
+						},
+						"description": "list of all categories"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "group",
+			"item": [
+				{
+					"name": "http://localhost:8081/api/group",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6ImFsemFiaWxsYTA5QGdtYWlsLmNvbSIsImlkIjo1LCJpYXQiOjE2MTE4NjMyNTUsImV4cCI6MTYxMjQ2ODA1NX0.APePwj_ADbvE6UE2sBhnBbN4E62KTbXNEFCUQlkNRJQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "IIT JEE cheat code group",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "the greatest grou of all time. This is the best study channel that you will ever see.",
+									"type": "text"
+								},
+								{
+									"key": "members",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/group",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/group/12",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6InZhbnNoYW1hZ2dAZ21haWwuY29tIiwiaWQiOjEsImlhdCI6MTYxMTI1MjI1MSwiZXhwIjoxNjExODU3MDUxfQ.AThqW8pbhJwpjMTngIEqSgfBaxxb5VzdRWR1VBLa-0E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/group/19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"group",
+								"19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/group/20/members",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vdW5pa2E1IiwiZW1haWwiOiJ2YW5zaGFtYWdnQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2MTE4NjUwMTYsImV4cCI6MTYxMjQ2OTgxNn0.yvsd-WGdREPNy9O439OZoBxGk_zR3hbiMudbrBaOVUw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/group/34/members",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"group",
+								"34",
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/group/20",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6ImFsemFiaWxsYTA5QGdtYWlsLmNvbSIsImlkIjo1LCJpYXQiOjE2MTE4NjMyNTUsImV4cCI6MTYxMjQ2ODA1NX0.APePwj_ADbvE6UE2sBhnBbN4E62KTbXNEFCUQlkNRJQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/group/34",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"group",
+								"34"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/group/20/member",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6InZhbnNoYW1hZ2dAZ21haWwuY29tIiwiaWQiOjEsImlhdCI6MTYxMTI1MjI1MSwiZXhwIjoxNjExODU3MDUxfQ.AThqW8pbhJwpjMTngIEqSgfBaxxb5VzdRWR1VBLa-0E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/group/20/member",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"group",
+								"20",
+								"member"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/group/20/join",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vdW5pa2E1IiwiZW1haWwiOiJ2YW5zaGFtYWdnQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2MTE4NjUwMTYsImV4cCI6MTYxMjQ2OTgxNn0.yvsd-WGdREPNy9O439OZoBxGk_zR3hbiMudbrBaOVUw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/group/34/join",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"group",
+								"34",
+								"join"
+							]
+						},
+						"description": "joining a group"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/group/20/leave",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imphc2hhbmIiLCJlbWFpbCI6Imphc2hhbmJhbWJhQGdtYWlsLmNvbSIsImlkIjoxOCwiaWF0IjoxNjExNDExMDQwLCJleHAiOjE2MTIwMTU4NDB9.e1Q5VtPirG26PTjuEdvSDIaUQuW0vjFC0l5KlAjiDDI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/group/20/leave",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"group",
+								"20",
+								"leave"
+							]
+						},
+						"description": "to leave the group by the logged in user"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/group/1/post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vdW5pa2E1IiwiZW1haWwiOiJ2YW5zaGFtYWdnQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2MTE4NjUwMTYsImV4cCI6MTYxMjQ2OTgxNn0.yvsd-WGdREPNy9O439OZoBxGk_zR3hbiMudbrBaOVUw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstname",
+									"value": "manavdeep",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "What should be the best way to crack JEE though?",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "manav@gmail.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "username",
+									"value": "manavb",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "none",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/group/34/post",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"group",
+								"34",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/group/34/posts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1vdW5pa2E1IiwiZW1haWwiOiJ2YW5zaGFtYWdnQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2MTE4NjUwMTYsImV4cCI6MTYxMjQ2OTgxNn0.yvsd-WGdREPNy9O439OZoBxGk_zR3hbiMudbrBaOVUw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/group/34/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"group",
+								"34",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "http://localhost:8081/admin/category/add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Computer Science",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Computer science is the study of computers and computing as well as their theoretical and practical applications. Computer science applies the principles of mathematics, engineering, and logic to a plethora of functions, including algorithm formulation, software and hardware development, and artificial intelligence.",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8081/admin/category",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"admin",
+										"category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8081/admin/category/1/delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8081/admin/category/8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"admin",
+										"category",
+										"8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8081/admin/category/all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8081/admin/category/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"admin",
+										"category",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8081/admin/category/9",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "UPSC",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "The Union Public Service Commission, commonly abbreviated as UPSC, is India's premier central recruiting agency. It is responsible for appointments to and examinations for All India services and group A & group B of Central services.",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8081/admin/category/13",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"admin",
+										"category",
+										"13"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "various categories for the resources"
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "http://localhost:8081/admin/user/all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8081/admin/user/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"admin",
+										"user",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8081/admin/user/16",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8081/admin/user/33",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"admin",
+										"user",
+										"33"
+									]
+								},
+								"description": "takes the id of the user and deletes it from the database pernanantly"
+							},
+							"response": []
+						}
+					],
+					"description": "CRUD of users"
+				},
+				{
+					"name": "http://localhost:8081/admin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/admin/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"admin",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "administrator routes."
+		},
+		{
+			"name": "http://localhost:8081/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZhbnNoYW1hZ2ciLCJlbWFpbCI6InZhbnNoYW1hZ2dAZ21haWwuY29tIiwiaWQiOjEsImlhdCI6MTYxMTI1MjI1MSwiZXhwIjoxNjExODU3MDUxfQ.AThqW8pbhJwpjMTngIEqSgfBaxxb5VzdRWR1VBLa-0E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "firstname",
+							"value": "manavdeep",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "singh",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "manav@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "manavb",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "none",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/group/1/post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"group",
+						"1",
+						"post"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

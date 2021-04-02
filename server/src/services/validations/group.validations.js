@@ -5,7 +5,7 @@ import { body } from 'express-validator';
 import { isRequestValidated } from './error';
 
 export const validateGroupCreation = [
-  body('name').trim().escape().isLength({ min: 10, max: 30 }).withMessage('Title should be between 10 and 30 chars'),
+  body('name').trim().escape().isLength({ min: 10, max: 30 }).withMessage('name should be between 10 and 30 chars'),
   body('description')
     .trim()
     .escape()
